@@ -2,18 +2,9 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
-
+from constants import *
 pygame.init()
 
-# ---------------- COLORS ----------------
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (180, 20, 20)
-DARK_RED = (100, 0, 0)
-GRAY = (40, 40, 40)
-
-WIDTH = 800
-HEIGHT = 600
 
 # ---------------- TEXT FUNCTION ----------------
 def create_surface_with_text(text, font_size, text_rgb):
