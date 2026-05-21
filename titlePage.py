@@ -3,6 +3,8 @@ import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
 from constants import *
+from scene1 import play_intro
+from game_states import GameState
 pygame.init()
 
 
@@ -74,12 +76,6 @@ class UIElement(Sprite):
         surface.blit(self.image, self.rect)
 
 
-# ---------------- GAME STATES ----------------
-class GameState(Enum):
-    QUIT = -1
-    TITLE = 0
-    NEWGAME = 1
-
 
 # ---------------- MAIN ----------------
 def main():
@@ -96,7 +92,10 @@ def main():
         if game_state == GameState.TITLE:
             game_state = title_screen(screen, clock)
 
-        elif game_state == GameState.NEWGAME:
+        elif game_state == GameState.INTRO:
+            game_state = play_intro(screen, clock)
+
+        elif game_state == GameState.GAME:
             game_state = play_level(screen, clock)
 
         elif game_state == GameState.QUIT:
@@ -112,7 +111,7 @@ def title_screen(screen, clock):
         font_size=40,
         text_rgb=WHITE,
         text="START",
-        action=GameState.NEWGAME,
+        action=GameState.INTRO,
     )
 
     quit_btn = UIElement(

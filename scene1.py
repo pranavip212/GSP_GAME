@@ -6,10 +6,10 @@ from ui import DialogueBox
 
 def play_intro(screen, clock):
     # images
-    bedroom = pygame.image.load('bedroom.png').convert()
-    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
-    zombie = pygame.image.load("assets/zombie.png").convert_alpha()
-    zombie = pygame.transform.scale(zombie, (300, 300))
+#    bedroom = pygame.image.load('bedroom.png').convert()
+#    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
+ #   zombie = pygame.image.load("assets/zombie.png").convert_alpha()
+  #  zombie = pygame.transform.scale(zombie, (300, 300))
 
     # fade
     fade_alpha = 255
@@ -74,13 +74,13 @@ def play_intro(screen, clock):
 
                         # intro finished
                         else:
-                            running = False
+                            return GameState.GAME
 
         # draw bedroom
         screen.blit(bedroom, (0, 0))
 
         # reveal zombie w dialouge pacing
-        if current_line >= 5:
+        if current_line >= 3:
             screen.blit(
                 zombie,
                 (250, 100)
