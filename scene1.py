@@ -6,20 +6,22 @@ from ui import DialogueBox
 
 def play_intro(screen, clock):
     # images
-#    bedroom = pygame.image.load('bedroom.png').convert()
-#    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
- #   zombie = pygame.image.load("assets/zombie.png").convert_alpha()
-  #  zombie = pygame.transform.scale(zombie, (300, 300))
+    bedroom = pygame.image.load('bedroom.png').convert()
+    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
+    zombie = pygame.image.load("zombie_jaw.png").convert_alpha()
+    zombie = pygame.transform.scale(zombie, (300, 300))
 
     # fade
     fade_alpha = 255
 
     dialogue_lines = [
+        "Press space to begin/continue.",
         "You were having the best nap of your life...",
         "Something feels cold on your face.",
         "...wait.",
         "This isn't YOUR drool.",
         "A zombie is hovering inches above you."
+        "What do you do?"
     ]
 
     current_line = 0
