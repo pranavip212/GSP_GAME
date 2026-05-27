@@ -4,7 +4,7 @@ from game_states import GameState
 from ui import DialogueBox
 
 
-def play_intro(screen, clock):
+def play_maze_game(screen, clock):
     # images
     bedroom = pygame.image.load('bedroom.png').convert()
     bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
@@ -15,13 +15,13 @@ def play_intro(screen, clock):
     fade_alpha = 255
 
     dialogue_lines = [
-        "Press space to begin/continue.",
-        "You were having the best nap of your life...",
-        "Something feels cold on your face.",
-        "...wait.",
-        "This isn't YOUR drool.",
-        "A zombie is hovering inches above you."
-        "What do you do?"
+        "Following the scream, you guys wander the halls.",
+        "Out of nowhere, the lights go out and you feel the ground shift...",
+        "The now setting sun illuminates the halls, and you see the hallways twist and shift into a dark maze.",
+        "Mila grabs your wrist and whispers to you:",
+        "'We have to go. Now.'"
+        "Now, you have to make a quick decision.",
+        "Do you trust Mila?"
     ]
 
     current_line = 0
