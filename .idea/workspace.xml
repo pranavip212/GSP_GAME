@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="start of fight scebe" />
+    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="fight scene" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +55,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Tushar Patalia/PycharmProjects/GSP_GAME_1",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -136,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1779903584872</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fight scene">
+      <created>1779903721845</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1779903721845</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +161,7 @@
     <MESSAGE value="buggy title page, unmodified from tut" />
     <MESSAGE value="start of intro scene and some pictures in there too" />
     <MESSAGE value="start of fight scebe" />
-    <option name="LAST_COMMIT_MESSAGE" value="start of fight scebe" />
+    <MESSAGE value="fight scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="fight scene" />
   </component>
 </project>
