@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="start of intro scene and some pictures in there too">
-      <change afterPath="$PROJECT_DIR$/fightscene.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="start of fight scebe" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1779210251030</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="start of fight scebe">
+      <created>1779903584872</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1779903584872</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +153,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="buggy title page, unmodified from tut" />
     <MESSAGE value="start of intro scene and some pictures in there too" />
-    <option name="LAST_COMMIT_MESSAGE" value="start of intro scene and some pictures in there too" />
+    <MESSAGE value="start of fight scebe" />
+    <option name="LAST_COMMIT_MESSAGE" value="start of fight scebe" />
   </component>
 </project>
