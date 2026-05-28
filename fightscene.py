@@ -304,3 +304,72 @@ def draw_ui():
     dialogue.draw()
 
 
+# UPDATE GAME
+
+def update(dt):
+
+    global bar_value
+    global timer
+    global current_state
+
+    if current_state != GameState.FIGHT:
+        return
+    # drain bar
+    bar_value -= DRAIN_SPEED * dt
+    # countdown
+    timer -= dt
+    # Lose
+    if bar_value <= 0:
+
+        bar_value = 0
+
+        current_state = GameState.LOSE
+
+        dialogue.show(
+            "THE ZOMBIE OVERPOWERED YOU..."
+        )
+
+    # Win
+
+    if timer <= 0:
+
+        timer = 0
+
+        current_state = GameState.WIN
+
+        dialogue.show(
+            "YOU SURVIVED THE ATTACK!"
+        )
+
+
+# MAIN LOOP
+
+running = True
+
+while running:
+    dt = clock.tick(60) / 1000
+
+    # EVENTS
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            running = False
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_SPACE:
+
+                if current_state == GameState.INTRO:
+
+                    current_state = GameState.FIGHT
+
+                    dialogue.show(
+                        "SPAM SPACE TO SURVIVE!"
+                    )
+
+                elif current_state == GameState.FIGHT:
+
+
+
+
