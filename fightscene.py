@@ -219,3 +219,88 @@ def draw_blood():
 
 # DRAW UI
 
+def draw_ui():
+    title = title_font.render(
+        "ZOMBIE FIGHT",
+        True,
+        WHITE
+    )
+
+    screen.blit(title, (260, 40))
+
+    timer_text = main_font.render(
+        f"TIME: {timer:.1f}",
+        True,
+        WHITE
+    )
+
+    screen.blit(timer_text, (360, 120))
+
+
+    pygame.draw.rect(
+        screen,
+        DARK_GRAY,
+        (150, 250, 500, 50)
+    )
+
+    # Bar color
+    if bar_value > 60:
+        color = GREEN
+    elif bar_value > 30:
+        color = YELLOW
+    else:
+        color = RED
+
+    # Filled bar
+    pygame.draw.rect(
+        screen,
+        color,
+        (
+            150,
+            250,
+            int((bar_value / BAR_MAX) * 500),
+            50
+        )
+    )
+
+    # Border
+    pygame.draw.rect(
+        screen,
+        WHITE,
+        (150, 250, 500, 50),
+        3
+    )
+
+    # Win message
+    if current_state == GameState.WIN:
+        text = big_font.render(
+            "YOU SURVIVED!",
+            True,
+            GREEN
+        )
+
+        screen.blit(text, (210, 330))
+
+    # Lose message
+    if current_state == GameState.LOSE:
+        text = big_font.render(
+            "THE ZOMBIE KILLED YOU",
+            True,
+            RED
+        )
+
+        screen.blit(text, (50, 330))
+
+    # Restart message
+    if current_state in [GameState.WIN, GameState.LOSE]:
+        restart = main_font.render(
+            "PRESS SPACE TO RESTART",
+            True,
+            WHITE
+        )
+
+        screen.blit(restart, (250, 420))
+
+    dialogue.draw()
+
+
