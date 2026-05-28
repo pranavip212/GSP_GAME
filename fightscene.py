@@ -370,6 +370,37 @@ while running:
 
                 elif current_state == GameState.FIGHT:
 
+                    bar_value += REFILL_AMOUNT
+
+                    if bar_value > BAR_MAX:
+                        bar_value = BAR_MAX
+
+                elif current_state in [
+                    GameState.WIN,
+                    GameState.LOSE
+                ]:
+                    restart_game()
+    # UPDATE
+    update(dt)
+
+    # DRAW
+    screen.fill((15, 15, 15))
+
+    draw_player()
+
+    draw_zombie()
+
+    if current_state == GameState.FIGHT:
+        draw_blood()
+
+        draw_ui()
+
+        pygame.display.flip()
+
+    pygame.quit()
+    sys.exit()
+
+
 
 
 
