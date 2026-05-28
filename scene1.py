@@ -6,9 +6,9 @@ from ui import DialogueBox
 
 def play_intro(screen, clock):
     # images
-    bedroom = pygame.image.load('bedroom.png').convert()
+    bedroom = pygame.image.load('assets/images/bedroom.png').convert()
     bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
-    zombie = pygame.image.load("zombie_jaw.png").convert_alpha()
+    zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
     zombie = pygame.transform.scale(zombie, (300, 300))
 
     # fade
