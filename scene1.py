@@ -76,7 +76,7 @@ def play_intro(screen, clock):
 
                         # intro finished
                         else:
-                            return GameState.GAME
+                            return GameState.FIGHT
 
         # draw bedroom
         screen.blit(bedroom, (0, 0))
