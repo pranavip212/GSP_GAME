@@ -4,47 +4,103 @@ from game_states import GameState
 from ui import DialogueBox
 
 
-def play_intro(screen, clock):
+
+def at_School(screen, clock):
     # images
-    bedroom = pygame.image.load('assets/images/bedroom.png').convert()
-    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
-    zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
-    zombie = pygame.transform.scale(zombie, (300, 300))
+    day_hallway = pygame.image.load('assets/images/day_hallway.png').convert()
+    day_hallway = pygame.transform.scale(day_hallway, (WIDTH, HEIGHT))
+    mila_standing = pygame.image.load("assets/images/mila_standing_bg.png").convert_alpha()
+    mila_standing = pygame.transform.scale(mila_standing, (300, 300))
 
     # fade
     fade_alpha = 255
 
     dialogue_lines = [
 
-        [("Press space to begin/continue.", WHITE)],
+        [("Running into the corridor, you look around at the school crawling with undead in uniforms", WHITE)],
 
-        [("You were having the best nap of your life...", WHITE)],
+        [("Distracted, you run into a tall figure...", WHITE)],
 
-        [("Something feels cold on your face.", WHITE)],
+        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes", WHITE)],
 
-        [("...wait.", RED)],
+        speaker(
+            "Mila",
+            PURPLE,
+            "O.M.G! What are you doing here?"
+        ),
 
-        [("This isn't YOUR drool.", RED)],
+        speaker(
+            "You",
+            RED,
+            "RUNNING? HELLO? ZOMBIES???"
+        ),
 
-        [("A zombie is hovering inches above you.", WHITE)],
+        speaker(
+            "Mila",
+            PURPLE,
+            "OH RIGHT!"
+        ),
 
-        [("What do you do?", RED)]
+        [("Mila's cold hand grabs yours and you run into the kitchen, locking the door.", WHITE)],
+
+        [("After catching your breath, you follow Mila to the stove, where she insists on making breakfast.", WHITE)],
+
+        [("You and Mila sat together in history class, and are trauma bonded after surviving that class.", WHITE)],
+
+        [(
+         "Naturally, she is your first and only friend at this new school even if she seems a little strange…", WHITE)],
+
+        [("Mila interrupts your thoughts and slides a plate in front of you.", WHITE)],
+
+        [("The scrambled eggs look fine, but the bacon… it's practically raw.", WHITE)],
+
+        speaker(
+            "Mila",
+            PURPLE,
+            "You like it crispy, right?"
+        ),
+
+        [("She asks, already biting into a bloody strip.", WHITE)],
+
+        [("You hesitate. Mila always seemed a little weird, but this?", WHITE)],
+
+        [("What will you do?", DARK_RED)]
 
     ]
 
-    current_line = 0
 
+    current_line = 0
 
     # create dialogue box
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
-    running = True
 
     # choice buttons only appear later
     show_choices = False
 
+def title_screen(screen, clock):
+
+    eat_bacon_btn = UIElement(
+        center_position=(WIDTH // 2, 380),
+        font_size=40,
+        text_rgb=WHITE,
+        text="START",
+        action=GameState.INTRO,
+    )
+
+    dont_eat_btn = UIElement(
+        center_position=(WIDTH // 2, 470),
+        font_size=40,
+        text_rgb=WHITE,
+        text="QUIT",
+        action=GameState.QUIT,
+    )
+
+    buttons = [start_btn, quit_btn]
+
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
+    running = True
 
     while running:
 
@@ -122,7 +178,6 @@ def play_intro(screen, clock):
         # update typewriter effect
         dialogue_box.update()
 
-        # draw dialogue
         dialogue_box.draw(screen)
 
         # update screen
