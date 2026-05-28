@@ -103,7 +103,7 @@ def main():
             return
 
 
-# ---------------- TITLE SCREEN ----------------
+# intro screen
 def title_screen(screen, clock):
 
     start_btn = UIElement(
