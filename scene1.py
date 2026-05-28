@@ -20,7 +20,7 @@ def play_intro(screen, clock):
         "Something feels cold on your face.",
         "...wait.",
         "This isn't YOUR drool.",
-        "A zombie is hovering inches above you."
+        "A zombie is hovering inches above you.",
         "What do you do?"
     ]
 
