@@ -21,6 +21,7 @@ SKIN = (241, 194, 125)
 # =====================================
 # FONTS
 # =====================================
+pygame.font.init()
 
 title_font = pygame.font.SysFont("arial", 48)
 main_font = pygame.font.SysFont("arial", 30)

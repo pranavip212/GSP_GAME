@@ -68,7 +68,7 @@ def play_intro(screen, clock):
                     if not dialogue_box.finished:
 
                         dialogue_box.visible_characters = len(
-                            dialogue_box.text
+                            dialogue_box.text_segments
                         )
 
                     # otherwise go next line
