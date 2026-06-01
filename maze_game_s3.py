@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from game_states import GameState
+from chase_s3 import play_follow_mila
+from chase_s3 import play_run_away
 from ui import DialogueBox
 
 
@@ -11,20 +13,22 @@ def play_maze_game(screen, clock):
     hallway_dark = pygame.transform.scale(hallway_dark, (WIDTH, HEIGHT))
     maze = pygame.image.load('assets/images/maze.png').convert()
     maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
-    mila_normal = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
-    mila_normal = pygame.transform.scale(mila_normal, (300, 300))
+    mila_normal_lit = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
+    mila_normal_lit = pygame.transform.scale(mila_normal_lit, (750, 550))
+    mila_normal_dark = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
+    mila_normal_dark = pygame.transform.scale(mila_normal_dark, (750, 550))
 
     fade_alpha = 255
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
     dialogue_lines = [
-        "Following the scream, you both wander the halls.",
-        "Suddenly, the lights go out and you feel the ground shift...",
-        "You see the hallways twist and shift into a dark maze.",
-        "Mila grabs your wrist and whispers to you:",
-        "'We have to go. Now.'",
-        "You have to make a quick decision.",
-        "Do you trust Mila?"
+        [("Following the scream, you both wander the halls.", WHITE)],
+        [("Suddenly, the lights go out and you feel the ground shift...", WHITE)],
+        [("You see the hallways twist and shift into a dark maze. ", WHITE)],
+        [("Mila grabs your wrist and whispers to you:", WHITE)],
+        [("We have to go. Now.", RED)], # change colour here
+        [("You have to make a quick decision.", WHITE)],
+        [("Do you trust Mila?", WHITE)]
     ]
 
     current_line = 0
@@ -57,16 +61,23 @@ def play_maze_game(screen, clock):
                             )
 
                         else:
-                            return GameState.GAME
+                            if choose_follow:
+                                play_follow_mila(screen, clock)
+                            elif choose_run:
+                                play_run_away(screen, clock)
 
-        # backgrounds
+        # visuals
         screen.blit(hallway_lit, (0, 0))
+        screen.blit(mila_normal_lit, (10, 90))
 
         if current_line >= 1:
             screen.blit(hallway_dark, (0, 0))
 
         if current_line >= 2:
             screen.blit(maze, (0, 0))
+
+        if current_line >= 3:
+            screen.blit(mila_normal_dark, (10, 90))
 
         # fade effects
         if fade_alpha > 0:
