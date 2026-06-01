@@ -7,7 +7,7 @@ from ui import DialogueBox
 def play_follow_mila(screen, clock):
     maze = pygame.image.load('assets/images/maze.png').convert()
     maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
-    maze_above = pygame.image.load('assets/images/maze_above.png').convert()
+    maze_above = pygame.image.load('assets/images/maze.png').convert()
     maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
     mila_normal_dark = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
     mila_normal_dark = pygame.transform.scale(mila_normal_dark, (700, 500))
@@ -18,7 +18,6 @@ def play_follow_mila(screen, clock):
     mila_sprite_walk_2 = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
     mila_sprite_walk_2 = pygame.transform.scale(mila_sprite_walk_2, (700, 500))
 
-    fade_alpha = 255
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
     dialogue_lines = [
@@ -67,14 +66,6 @@ def play_follow_mila(screen, clock):
         if current_line >= 2:
             screen.blit(maze_above, (0, 0)) # temp; free-roam should be here instead
 
-        # fade effects
-        if fade_alpha > 0:
-            fade_surface = pygame.Surface((WIDTH, HEIGHT))
-            fade_surface.fill(BLACK)
-            fade_surface.set_alpha(fade_alpha)
-            screen.blit(fade_surface, (0, 0))
-            fade_alpha -= 2
-
         # update gui
         dialogue_box.update()
         dialogue_box.draw(screen)
@@ -83,7 +74,7 @@ def play_follow_mila(screen, clock):
 def play_run_away(screen, clock):
     maze = pygame.image.load('assets/images/maze.png').convert()
     maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
-    maze_above = pygame.image.load('assets/images/maze_above.png').convert()
+    maze_above = pygame.image.load('assets/images/maze.png').convert()
     maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
     mila_normal_dark = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
     mila_normal_dark = pygame.transform.scale(mila_normal_dark, (700, 500))
@@ -94,7 +85,6 @@ def play_run_away(screen, clock):
     mila_sprite_walk_2 = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
     mila_sprite_walk_2 = pygame.transform.scale(mila_sprite_walk_2, (700, 500))
 
-    fade_alpha = 255
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
     dialogue_lines = [
@@ -146,14 +136,6 @@ def play_run_away(screen, clock):
 
         if current_line >= 2:
             screen.blit(maze_above, (0, 0)) # temp; free-roam should be here instead
-
-        # fade effects
-        if fade_alpha > 0:
-            fade_surface = pygame.Surface((WIDTH, HEIGHT))
-            fade_surface.fill(BLACK)
-            fade_surface.set_alpha(fade_alpha)
-            screen.blit(fade_surface, (0, 0))
-            fade_alpha -= 2
 
         # update gui
         dialogue_box.update()

@@ -26,7 +26,7 @@ def play_maze_game(screen, clock):
         [("Suddenly, the lights go out and you feel the ground shift...", WHITE)],
         [("You see the hallways twist and shift into a dark maze. ", WHITE)],
         [("Mila grabs your wrist and whispers to you:", WHITE)],
-        [("We have to go. Now.", WHITE)], # change colour here
+        [("We have to go. Now.", RED)], # change colour here
         [("You have to make a quick decision.", WHITE)],
         [("Do you trust Mila?", WHITE)]
     ]
@@ -61,7 +61,10 @@ def play_maze_game(screen, clock):
                             )
 
                         else:
-                            return GameState.GAME
+                            if choose_follow:
+                                play_follow_mila(screen, clock)
+                            elif choose_run:
+                                play_run_away(screen, clock)
 
         # visuals
         screen.blit(hallway_lit, (0, 0))
