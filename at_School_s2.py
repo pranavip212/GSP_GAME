@@ -78,13 +78,13 @@ def at_School(screen, clock):
     # choice buttons only appear later
     show_choices = False
 
-def title_screen(screen, clock):
+def food_choice(screen, clock):
 
     eat_bacon_btn = UIElement(
         center_position=(WIDTH // 2, 380),
         font_size=40,
         text_rgb=WHITE,
-        text="START",
+        text="EAT BACON",
         action=GameState.INTRO,
     )
 
@@ -92,11 +92,19 @@ def title_screen(screen, clock):
         center_position=(WIDTH // 2, 470),
         font_size=40,
         text_rgb=WHITE,
-        text="QUIT",
+        text="REFUSE FOOD",
         action=GameState.QUIT,
     )
 
-    buttons = [start_btn, quit_btn]
+    grab_knife_btn = UIElement(
+        center_position=(WIDTH // 2, 470),
+        font_size=40,
+        text_rgb=WHITE,
+        text="GRAB KNIFE",
+        action=GameState.QUIT,
+    )
+
+    buttons = [eat_bacon_btn, dont_eat_btn, grab_knife_btn]
 
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
@@ -143,13 +151,13 @@ def title_screen(screen, clock):
                         else:
                             return GameState.GAME
 
-        # draw bedroom
-        screen.blit(bedroom, (0, 0))
+        # draw hallway
+        screen.blit(day_hallway, (0, 0))
 
-        # reveal zombie w dialouge pacing
+        # reveal mila w dialouge pacing
         if current_line >= 3:
             screen.blit(
-                zombie,
+                mila_standing,
                 (250, 100)
             )
 

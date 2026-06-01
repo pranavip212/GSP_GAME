@@ -1,29 +1,34 @@
-"""import pygame
-# setup
+import pygame
+from game_states import GameState
+from titlepage import play_title
+from scene1 import play_intro
+from fightscene import play_fight
+from at_School_s2 import at_School
 
 pygame.init()
-screen_width = 1100
-screen_length = 800
 
-screen = pygame.display.set_mode((screen_width, screen_length ))
-pygame.display.set_caption("Zombie PYOAG Game")
+screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
-pygame.font.init()
-font_1 = pygame.font.SysFont('monospace', 25, bold=False)
+current_state = GameState.TITLE
+
 running = True
 
 while running:
-    # A. Check for Events (keyboard/mouse)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        # B. Update Game Logic (move characters, check collisions)
 
-        # C. Drawing
-        screen.fill((0, 0, 0))  # Clear screen with black
-        # Add your drawing code here (e.g., pygame.draw.rect)
+    if current_state == GameState.TITLE:
+        current_state = play_title(screen, clock)
 
-        pygame.display.update()  # Refresh the screen
-        clock.tick(60)  # Limits the game to 60 frames per second
-"""
+    elif current_state == GameState.INTRO:
+        current_state = play_intro(screen, clock)
+
+    elif current_state == GameState.FIGHT:
+        current_state = play_fight(screen, clock)
+
+    elif current_state == GameState.GAME:
+        current_state = at_School(screen, clock)
+
+    elif current_state == GameState.QUIT:
+        running = False
+
+pygame.quit()

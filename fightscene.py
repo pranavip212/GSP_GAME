@@ -1,9 +1,12 @@
+print('fight scene loaded ')
+
 import pygame
 import random
 
 from constants import *
 from game_states import GameState
 
+not_python #error to test if scene even starts
 # =====================================
 # COLORS
 # =====================================
@@ -22,10 +25,6 @@ SKIN = (241, 194, 125)
 # FONTS
 # =====================================
 
-title_font = pygame.font.SysFont("arial", 48)
-main_font = pygame.font.SysFont("arial", 30)
-big_font = pygame.font.SysFont("arial", 56)
-
 # =====================================
 # SETTINGS
 # =====================================
@@ -40,6 +39,11 @@ FIGHT_DURATION = 10
 
 
 def play_fight(screen, clock):
+    print('fight scene started')
+
+    title_font = pygame.font.SysFont("arial", 48)
+    main_font = pygame.font.SysFont("arial", 30)
+    big_font = pygame.font.SysFont("arial", 56)
 
     current_state = "intro"
 
@@ -139,7 +143,10 @@ def play_fight(screen, clock):
                         if bar_value > BAR_MAX:
                             bar_value = BAR_MAX
 
-                    elif current_state in ["win", "lose"]:
+                    elif current_state == "win":
+                        return GameState.GAME
+
+                    elif current_state == "lose":
                         return GameState.INTRO
 
         # UPDATE

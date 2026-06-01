@@ -85,7 +85,8 @@ def play_intro(screen, clock):
 
                         # intro finished
                         else:
-                            return GameState.GAME
+                            print('switching to fight scene')
+                            return GameState.FIGHT
 
         # draw bedroom
         screen.blit(bedroom, (0, 0))
