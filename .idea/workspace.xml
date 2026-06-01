@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="start of intro scene and some pictures in there too" />
+    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME">
+      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,12 +32,9 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/pranavip212/GSP_GAME&quot;,
-    &quot;accountId&quot;: &quot;679bfa87-90f5-4146-adb0-04fdf870ab6e&quot;
+    &quot;accountId&quot;: &quot;d21b02f7-97d9-48e3-8a7d-d444beff206e&quot;
   }
 }</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -43,23 +43,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.strongJesse.executor": "Run",
-    "Python.titlePage.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Tushar Patalia/PycharmProjects/GSP_GAME_1",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.strongJesse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.titlePage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pranavip64/GSP_GAME_1/assets/images&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pranavip64\GSP_GAME_1\assets\images" />
       <recent name="C:\Users\Tushar Patalia\PycharmProjects\GSP_GAME_1" />
       <recent name="C:\Users\Tushar Patalia\PycharmProjects\GSP_GAME_1\.venv" />
       <recent name="C:\Users\pranavip64\GSP_GAME" />
@@ -100,7 +100,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-4762d8aabb82-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.173" />
+        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
       </set>
     </attachedChunks>
   </component>
@@ -129,23 +129,32 @@
       <option name="project" value="LOCAL" />
       <updated>1779210251030</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME">
+      <option name="closed" value="true" />
+      <created>1779992636362</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1779992636362</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="buggy title page, unmodified from tut" />
     <MESSAGE value="start of intro scene and some pictures in there too" />
-    <option name="LAST_COMMIT_MESSAGE" value="start of intro scene and some pictures in there too" />
+    <MESSAGE value="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME" />
+    <option name="LAST_COMMIT_MESSAGE" value="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/titlePage.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
