@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from game_states import GameState
+from fightscene import play_fight
 from ui import DialogueBox
 
 
@@ -85,8 +86,9 @@ def play_intro(screen, clock):
 
                         # intro finished
                         else:
-                            print('switching to fight scene')
-                            return GameState.FIGHT
+                            # print('switching to fight scene')
+                            # return GameState.FIGHT
+                            play_fight()
 
         # draw bedroom
         screen.blit(bedroom, (0, 0))
