@@ -40,21 +40,17 @@ def play_follow_mila(screen, clock):
         clock.tick(60)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     if not dialogue_box.finished:
                         dialogue_box.visible_characters = len(
-                            dialogue_box.text
-                        )
+                            dialogue_box.text_segments)
 
                     else:
                         current_line += 1
                         if current_line < len(dialogue_lines):
                             dialogue_box.set_text(
-                                dialogue_lines[current_line]
-                            )
+                                dialogue_lines[current_line])
 
                         else:
                             return GameState.GAME
@@ -111,21 +107,17 @@ def play_run_away(screen, clock):
         clock.tick(60)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     if not dialogue_box.finished:
                         dialogue_box.visible_characters = len(
-                            dialogue_box.text
-                        )
+                            dialogue_box.text_segments)
 
                     else:
                         current_line += 1
                         if current_line < len(dialogue_lines):
                             dialogue_box.set_text(
-                                dialogue_lines[current_line]
-                            )
+                                dialogue_lines[current_line])
 
                         else:
                             return GameState.GAME

@@ -1,8 +1,6 @@
 import pygame
 from constants import *
-from game_states import GameState
-from chase_s3 import play_follow_mila
-from chase_s3 import play_run_away
+from chase_s3 import play_follow_mila, play_run_away
 from ui import DialogueBox
 
 
@@ -26,17 +24,38 @@ def play_maze_game(screen, clock):
         [("Suddenly, the lights go out and you feel the ground shift...", WHITE)],
         [("You see the hallways twist and shift into a dark maze. ", WHITE)],
         [("Mila grabs your wrist and whispers to you:", WHITE)],
-        [("We have to go. Now.", RED)], # change colour here
+        [("We have to go. Now.", (50, 120, 255))], # change colour here
         [("You have to make a quick decision.", WHITE)],
-        [("Do you trust Mila?", WHITE)]
+        [("Do you trust Mila?", RED)]
     ]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
 
-    # choices
-    show_choices = False
+    # choices, testing Button class
+    show_choices = True
+
+    class Button:
+        def __init__(self, text, x, y, button_font, colour, hover_colour):
+            self.text = text
+            self.button_font = button_font
+            self.colour = colour
+            self.hover_colour = hover_colour
+            self.rect = self.text.get_rect()
+
+        def draw(self):
+            action = False
+
+            # check if mouse is over button
+            pos = pygame.mouse.get_pos()
+            if self.rect.collidepoint(pos):
+                if pygame.mouse.get_pressed()[0] == 1:
+                    action = True
+
+            screen.blit(self.text, (self.rect.x, self.rect.y))
+
+            return action
 
     # check runtime
     running = True
@@ -44,27 +63,20 @@ def play_maze_game(screen, clock):
         clock.tick(60)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     if not dialogue_box.finished:
                         dialogue_box.visible_characters = len(
-                            dialogue_box.text
-                        )
+                            dialogue_box.text_segments)
 
                     else:
                         current_line += 1
                         if current_line < len(dialogue_lines):
                             dialogue_box.set_text(
-                                dialogue_lines[current_line]
-                            )
+                                dialogue_lines[current_line])
 
                         else:
-                            if choose_follow:
-                                play_follow_mila(screen, clock)
-                            elif choose_run:
-                                play_run_away(screen, clock)
+                            play_follow_mila(screen, clock)
 
         # visuals
         screen.blit(hallway_lit, (0, 0))
