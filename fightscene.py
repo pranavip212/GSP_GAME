@@ -6,7 +6,6 @@ import random
 from constants import *
 from game_states import GameState
 
-not_python #error to test if scene even starts
 # =====================================
 # COLORS
 # =====================================
