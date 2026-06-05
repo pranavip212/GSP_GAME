@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from game_states import GameState
+from images import day_hallway
 from ui import DialogueBox
 
 
@@ -77,36 +78,172 @@ def at_School(screen, clock):
 
     # choice buttons only appear later
     show_choices = False
+    eat_button = pygame.Rect((40, 310, 220, 60))
+    refuse_button = pygame.Rect((40, 380, 220, 60))
+    knife_button = pygame.Rect((40, 380, 220, 60))
 
-def food_choice(screen, clock):
 
-    eat_bacon_btn = UIElement(
-        center_position=(WIDTH // 2, 380),
-        font_size=40,
-        text_rgb=WHITE,
-        text="EAT BACON",
-        action=GameState.INTRO,
-    )
+    # --- Main Game Loop --- #
+    running = True
+    while running:
+        clock.tick(60)
 
-    dont_eat_btn = UIElement(
-        center_position=(WIDTH // 2, 470),
-        font_size=40,
-        text_rgb=WHITE,
-        text="REFUSE FOOD",
-        action=GameState.QUIT,
-    )
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-    grab_knife_btn = UIElement(
-        center_position=(WIDTH // 2, 470),
-        font_size=40,
-        text_rgb=WHITE,
-        text="GRAB KNIFE",
-        action=GameState.QUIT,
-    )
+            # Choice Event
+            if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
+                if eat_button.collidepoint(event.pos):
+                    play_eat_bacon(screen, clock)
+                    return
+                elif refuse_button.collidepoint(event.pos):
+                    play_refuse_food(screen, clock)
+                elif knife_button.collidepoint(event.pos):
+                    play_grab_knife(screen, clock)
+                    return
 
-    buttons = [eat_bacon_btn, dont_eat_btn, grab_knife_btn]
-
+def play_eat_bacon (screen, clock):
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
+
+    dialogue_lines = [
+        [("You pick up your fork and try the bacon.", WHITE)],
+        [("You feel your stomach churn", WHITE)],
+        [("You feel stronger after eating, even if it is nasty", WHITE)],
+        [("It's cold, slimy, and makes your stomach churn. but Mila nods approvingly", WHITE)],
+        [("You've gained her trust...", WHITE)],
+        [("Suddenly, you are interrupted by a scream in the hallway", WHITE)]
+    ]
+
+    current_line = 0
+    dialogue_box = DialogueBox((40, 450, 720, 120))
+    dialogue_box.set_text(dialogue_lines[current_line])
+
+    # choices
+    show_choices = False
+
+    # check runtime
+    running = True
+    while running:
+        clock.tick(60)
+
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if not dialogue_box.finished:
+                        dialogue_box.visible_characters = len(
+                            dialogue_box.text_segments)
+
+                    else:
+                        current_line += 1
+                        if current_line < len(dialogue_lines):
+                            dialogue_box.set_text(
+                                dialogue_lines[current_line])
+
+                        else:
+                            return GameState.GAME
+
+        # visuals
+        # fix lines here
+        screen.blit(day_hallway, (0, 0))
+        screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
+
+        if current_line >= 1:
+            screen.blit(pygame.transform.scale(mila_happy_dark, (195, 520)), (520, 120))
+
+        if current_line >= 2:
+            screen.blit(maze_above, (0, 0))  # temp; free-roam should be here instead
+
+        # update gui
+        dialogue_box.update()
+        dialogue_box.draw(screen)
+        pygame.display.flip()
+
+def play_refuse_food (screen, clock):
+    font = pygame.freetype.SysFont("consolas", 32, bold=True)
+
+    dialogue_lines = [
+        [("You push the plate away, feeling uneasy", WHITE)],
+        [("Mila shrugs and continues eating, but her eyes linger on you for too long…", WHITE)],
+        [("You've lost some of her trust'", DARK_RED)],
+        [("Suddenly, the tension is broken by a scream in the hallway", WHITE)],
+    ]
+
+    current_line = 0
+    dialogue_box = DialogueBox((40, 450, 720, 120))
+    dialogue_box.set_text(dialogue_lines[current_line])
+
+    # choices
+    show_choices = False
+
+    # check runtime
+    running = True
+    while running:
+        clock.tick(60)
+
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if not dialogue_box.finished:
+                        dialogue_box.visible_characters = len(
+                            dialogue_box.text_segments)
+
+                    else:
+                        current_line += 1
+                        if current_line < len(dialogue_lines):
+                            dialogue_box.set_text(
+                                dialogue_lines[current_line])
+
+                        else:
+                            return GameState.GAME
+
+        # visuals
+        # fix lines here
+        screen.blit(day_hallway, (0, 0))
+        screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
+
+        if current_line >= 1:
+            screen.blit(pygame.transform.scale(mila_happy_dark, (195, 520)), (520, 120))
+
+        if current_line >= 2:
+            screen.blit(maze_above, (0, 0))  # temp; free-roam should be here instead
+
+        # update gui
+        dialogue_box.update()
+        dialogue_box.draw(screen)
+        pygame.display.flip()
+
+
+
+# def food_choice(screen, clock):
+#
+#     eat_bacon_btn = UIElement(
+#         center_position=(WIDTH // 2, 380),
+#         font_size=40,
+#         text_rgb=WHITE,
+#         text="EAT BACON",
+#         action=GameState.INTRO,
+#     )
+#
+#     dont_eat_btn = UIElement(
+#         center_position=(WIDTH // 2, 470),
+#         font_size=40,
+#         text_rgb=WHITE,
+#         text="REFUSE FOOD",
+#         action=GameState.QUIT,
+#     )
+#
+#     grab_knife_btn = UIElement(
+#         center_position=(WIDTH // 2, 470),
+#         font_size=40,
+#         text_rgb=WHITE,
+#         text="GRAB KNIFE",
+#         action=GameState.QUIT,
+#     )
+#
+#     buttons = [eat_bacon_btn, dont_eat_btn, grab_knife_btn]
+#
+#     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
     running = True
 
