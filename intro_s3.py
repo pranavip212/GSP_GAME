@@ -1,17 +1,18 @@
 import pygame
 from constants import *
-from chase_s3 import play_follow_mila, play_run_away
+from transition_s3 import play_transition_s3
 from ui import DialogueBox
 from images import *
 
 
-def play_maze_game(screen, clock):
+def play_intro_s3(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
-        [("Following the scream, you both wander the halls.", WHITE)],
-        [("Suddenly, the lights go out and you feel the ground shift...", WHITE)],
-        [("You see the hallways twist and shift into a dark maze.", WHITE)],
+        [("Curiously, you both wander the halls.", WHITE)],
+        [("Suddenly, the lights go out...", WHITE)],
+        [("You feel the ground move...", WHITE)],
+        [("The hallways twist and shift into a dark maze.", WHITE)],
         [("Mila abruptly grabs your wrist:", WHITE)],
         [("We have to go. Now.", (50, 120, 255))], # change colour to purple once constant is made
         [("You have to make a quick decision.", WHITE)],
@@ -37,10 +38,10 @@ def play_maze_game(screen, clock):
             # Choice Event
             if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
                 if follow_button.collidepoint(event.pos):
-                    play_follow_mila(screen, clock)
+                    play_transition_s3(screen, clock, "follow_mila")
                     return
                 elif run_button.collidepoint(event.pos):
-                    play_run_away(screen, clock)
+                    play_transition_s3(screen, clock, "run_away")
                     return
 
             # Dialogue Event
@@ -61,15 +62,18 @@ def play_maze_game(screen, clock):
         if current_line >= 1:
             screen.blit(hallway_dark, (0, 0))
 
-        if current_line >= 2:
+        if current_line >= 3:
             screen.blit(maze, (0, 0))
             screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
 
-        if current_line >= 3:
+        if current_line >= 4:
             screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(mila_pensive_dark, (250, 640)), (485, 90))
+            screen.blit(pygame.transform.scale(mila_normal_dark, (250, 640)), (485, 90))
 
         if current_line >= 5:
+            screen.blit(pygame.transform.scale(mila_pensive_dark, (250, 640)), (485, 90))
+
+        if current_line >= 6:
             screen.blit(maze, (0, 0))
             screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
 

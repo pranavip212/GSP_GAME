@@ -21,6 +21,10 @@ maze_above = pygame.image.load('assets/images/maze.png').convert()
 maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
 
 # character sprites
+player_sprite = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha() # tba
+player_sprite = pygame.transform.scale(player_sprite, (700, 500))
+mila_sprite = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha() # tba
+mila_sprite = pygame.transform.scale(mila_sprite, (700, 500))
 zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
 zombie = pygame.transform.scale(zombie, (300, 300))
 
@@ -37,10 +41,3 @@ mila_happy_dark = pygame.image.load("assets/images/mila_happy_dark.png").convert
 mila_happy_dark = pygame.transform.scale(mila_happy_dark, mila_size)
 mila_pensive_dark = pygame.image.load("assets/images/mila_pensive_dark.png").convert_alpha()
 mila_pensive_dark = pygame.transform.scale(mila_pensive_dark, mila_size)
-
-mila_sprite_idle = pygame.image.load("assets/images/mila_standing_clear_OLD.png").convert_alpha()
-mila_sprite_idle = pygame.transform.scale(mila_sprite_idle, (700, 500))
-mila_sprite_walk_1 = pygame.image.load("assets/images/mila_standing_clear_OLD.png").convert_alpha()
-mila_sprite_walk_1 = pygame.transform.scale(mila_sprite_walk_1, (700, 500))
-mila_sprite_walk_2 = pygame.image.load("assets/images/mila_standing_clear_OLD.png").convert_alpha()
-mila_sprite_walk_2 = pygame.transform.scale(mila_sprite_walk_2, (700, 500))
