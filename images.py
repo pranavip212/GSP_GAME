@@ -2,7 +2,7 @@ import pygame
 from constants import *
 
 screen = pygame.display.set_mode((800, 600))
-mila_size = (195, 520)
+mila_size = (270, 720)
 
 # backgrounds
 bedroom = pygame.image.load('assets/images/bedroom.png').convert()

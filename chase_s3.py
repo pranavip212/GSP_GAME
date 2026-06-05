@@ -6,15 +6,13 @@ from images import *
 
 
 def play_follow_mila(screen, clock):
-
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
     dialogue_lines = [
         [("Conflicted, you decide to follow Mila.", WHITE)],
         [("She shows the slightest smile, before ushering you to follow her into the maze.", WHITE)],
         [("Suddenly, Mila starts to limp...", WHITE)],
-        [("She falls onto her knees, writhing in pain...", WHITE)]
-    ]
+        [("She falls onto her knees, writhing in pain...", WHITE)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -46,7 +44,10 @@ def play_follow_mila(screen, clock):
 
         # visuals
         screen.blit(maze, (0, 0))
-        screen.blit(mila_normal_dark, (-30, 50))
+        screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
+
+        if current_line >= 1:
+            screen.blit(pygame.transform.scale(mila_happy_dark, (195, 520)), (520, 120))
 
         if current_line >= 2:
             screen.blit(maze_above, (0, 0)) # temp; free-roam should be here instead
@@ -57,19 +58,6 @@ def play_follow_mila(screen, clock):
         pygame.display.flip()
 
 def play_run_away(screen, clock):
-    maze = pygame.image.load('assets/images/maze.png').convert()
-    maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
-    maze_above = pygame.image.load('assets/images/maze.png').convert()
-    maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
-    mila_normal_dark = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_normal_dark = pygame.transform.scale(mila_normal_dark, (700, 500))
-    mila_sprite_idle = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_sprite_idle = pygame.transform.scale(mila_sprite_idle, (700, 500))
-    mila_sprite_walk_1 = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_sprite_walk_1 = pygame.transform.scale(mila_sprite_walk_1, (700, 500))
-    mila_sprite_walk_2 = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_sprite_walk_2 = pygame.transform.scale(mila_sprite_walk_2, (700, 500))
-
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
     dialogue_lines = [
@@ -80,8 +68,7 @@ def play_run_away(screen, clock):
         [("You turn around and just book it!", WHITE)],
         [("You reach a dead end and you see her coming closer.", WHITE)],
         [("Suddenly, Mila starts to limp...", WHITE)],
-        [("She falls onto her knees, writhing in pain...", WHITE)]
-    ]
+        [("She falls onto her knees, writhing in pain...", WHITE)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -113,7 +100,7 @@ def play_run_away(screen, clock):
 
         # visuals
         screen.blit(maze, (0, 0))
-        screen.blit(mila_normal_dark, (-30, 50))
+        screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
 
         if current_line >= 2:
             screen.blit(maze_above, (0, 0)) # temp; free-roam should be here instead

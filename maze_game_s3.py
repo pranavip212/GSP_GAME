@@ -6,91 +6,81 @@ from images import *
 
 
 def play_maze_game(screen, clock):
-
-    fade_alpha = 255
-    font = pygame.freetype.SysFont("consolas", 32, bold=True)
+    font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
         [("Following the scream, you both wander the halls.", WHITE)],
         [("Suddenly, the lights go out and you feel the ground shift...", WHITE)],
-        [("You see the hallways twist and shift into a dark maze. ", WHITE)],
-        [("Mila grabs your wrist and whispers to you:", WHITE)],
+        [("You see the hallways twist and shift into a dark maze.", WHITE)],
+        [("Mila abruptly grabs your wrist:", WHITE)],
         [("We have to go. Now.", (50, 120, 255))], # change colour to purple once constant is made
         [("You have to make a quick decision.", WHITE)],
-        [("Do you trust Mila?", RED)]
-    ]
+        [("Do you trust Mila?", RED)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
 
-    # choices, testing Button class
-    show_choices = True
+    show_choice = False
+    follow_button = pygame.Rect((40, 310, 220, 60))
+    run_button = pygame.Rect((40, 380, 220, 60))
 
-    class Button:
-        def __init__(self, text, x, y, button_font, colour, hover_colour):
-            self.text = text
-            self.button_font = button_font
-            self.colour = colour
-            self.hover_colour = hover_colour
-            self.rect = self.text.get_rect()
-
-        def draw(self):
-            action = False
-
-            # check if mouse is over button
-            pos = pygame.mouse.get_pos()
-            if self.rect.collidepoint(pos):
-                if pygame.mouse.get_pressed()[0] == 1:
-                    action = True
-
-            screen.blit(self.text, (self.rect.x, self.rect.y))
-
-            return action
-
-    # check runtime
+    # --- Main Game Loop --- #
     running = True
     while running:
         clock.tick(60)
 
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            # Choice Event
+            if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
+                if follow_button.collidepoint(event.pos):
+                    play_follow_mila(screen, clock)
+                    return
+                elif run_button.collidepoint(event.pos):
+                    play_run_away(screen, clock)
+                    return
+
+            # Dialogue Event
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    if not dialogue_box.finished:
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments)
+                if event.key == pygame.K_SPACE and not show_choice:
+                    current_line += 1
 
+                    if current_line < len(dialogue_lines):
+                        dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        current_line += 1
-                        if current_line < len(dialogue_lines):
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line])
+                        show_choice = True
 
-                        else:
-                            play_follow_mila(screen, clock)
 
-        # visuals
+        # --- GUI --- #
         screen.blit(hallway_lit, (0, 0))
-        screen.blit(mila_normal_lit, (10, 90))
+        screen.blit(pygame.transform.scale(mila_normal_lit, (195, 520)), (520, 120))
 
         if current_line >= 1:
             screen.blit(hallway_dark, (0, 0))
 
         if current_line >= 2:
             screen.blit(maze, (0, 0))
+            screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
 
         if current_line >= 3:
-            screen.blit(mila_normal_dark, (10, 90))
+            screen.blit(maze, (0, 0))
+            screen.blit(pygame.transform.scale(mila_pensive_dark, (250, 640)), (485, 90))
 
-        # fade effects
-        if fade_alpha > 0:
-            fade_surface = pygame.Surface((WIDTH, HEIGHT))
-            fade_surface.fill(BLACK)
-            fade_surface.set_alpha(fade_alpha)
-            screen.blit(fade_surface, (0, 0))
-            fade_alpha -= 2
+        if current_line >= 5:
+            screen.blit(maze, (0, 0))
+            screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
 
-        # update gui
+        if show_choice:
+            pygame.draw.rect(screen, BLACK, follow_button)
+            pygame.draw.rect(screen, BLACK, run_button)
+            pygame.draw.rect(screen, (180, 30, 30), follow_button, 3)
+            pygame.draw.rect(screen, (180, 30, 30), run_button, 3)
+            font.render_to(screen, (61, 330), "Follow her.", WHITE)
+            font.render_to(screen, (61, 400), "Run away!", WHITE)
+
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()
