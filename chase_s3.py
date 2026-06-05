@@ -2,21 +2,10 @@ import pygame
 from constants import *
 from game_states import GameState
 from ui import DialogueBox
+from images import *
 
 
 def play_follow_mila(screen, clock):
-    maze = pygame.image.load('assets/images/maze.png').convert()
-    maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
-    maze_above = pygame.image.load('assets/images/maze.png').convert()
-    maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
-    mila_normal_dark = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_normal_dark = pygame.transform.scale(mila_normal_dark, (700, 500))
-    mila_sprite_idle = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_sprite_idle = pygame.transform.scale(mila_sprite_idle, (700, 500))
-    mila_sprite_walk_1 = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_sprite_walk_1 = pygame.transform.scale(mila_sprite_walk_1, (700, 500))
-    mila_sprite_walk_2 = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_sprite_walk_2 = pygame.transform.scale(mila_sprite_walk_2, (700, 500))
 
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
 

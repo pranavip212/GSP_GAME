@@ -2,19 +2,10 @@ import pygame
 from constants import *
 from chase_s3 import play_follow_mila, play_run_away
 from ui import DialogueBox
+from images import *
 
 
 def play_maze_game(screen, clock):
-    hallway_lit = pygame.image.load('assets/images/hallway_lit.png').convert()
-    hallway_lit = pygame.transform.scale(hallway_lit, (WIDTH, HEIGHT))
-    hallway_dark = pygame.image.load('assets/images/hallway_dark.png').convert()
-    hallway_dark = pygame.transform.scale(hallway_dark, (WIDTH, HEIGHT))
-    maze = pygame.image.load('assets/images/maze.png').convert()
-    maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
-    mila_normal_lit = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_normal_lit = pygame.transform.scale(mila_normal_lit, (750, 550))
-    mila_normal_dark = pygame.image.load("assets/images/mila_standing_clear.png").convert_alpha()
-    mila_normal_dark = pygame.transform.scale(mila_normal_dark, (750, 550))
 
     fade_alpha = 255
     font = pygame.freetype.SysFont("consolas", 32, bold=True)
@@ -24,7 +15,7 @@ def play_maze_game(screen, clock):
         [("Suddenly, the lights go out and you feel the ground shift...", WHITE)],
         [("You see the hallways twist and shift into a dark maze. ", WHITE)],
         [("Mila grabs your wrist and whispers to you:", WHITE)],
-        [("We have to go. Now.", (50, 120, 255))], # change colour here
+        [("We have to go. Now.", (50, 120, 255))], # change colour to purple once constant is made
         [("You have to make a quick decision.", WHITE)],
         [("Do you trust Mila?", RED)]
     ]
