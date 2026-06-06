@@ -9,12 +9,12 @@ def play_intro_s3(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
-        [("Curiously, you both wander the halls.", WHITE)],
+        [("Curious, you both wander the halls.", WHITE)],
         [("Suddenly, the lights go out...", WHITE)],
         [("You feel the ground move...", WHITE)],
         [("The hallways twist and shift into a dark maze.", WHITE)],
         [("Mila abruptly grabs your wrist:", WHITE)],
-        [("We have to go. Now.", (50, 120, 255))], # change colour to purple once constant is made
+        [("We have to go. Now.", (50, 120, 255))], # change colour to purple once constant is made; maybe indicate speaker (?)
         [("You have to make a quick decision.", WHITE)],
         [("Do you trust Mila?", RED)]]
 
@@ -68,22 +68,30 @@ def play_intro_s3(screen, clock):
 
         if current_line >= 4:
             screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(mila_normal_dark, (250, 640)), (485, 90))
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (250, 640)), (485, 90))
 
         if current_line >= 5:
-            screen.blit(pygame.transform.scale(mila_pensive_dark, (250, 640)), (485, 90))
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_pensive_dark, True, False), (250, 640)), (485, 90))
 
         if current_line >= 6:
             screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
 
         if show_choice:
             pygame.draw.rect(screen, BLACK, follow_button)
             pygame.draw.rect(screen, BLACK, run_button)
             pygame.draw.rect(screen, (180, 30, 30), follow_button, 3)
             pygame.draw.rect(screen, (180, 30, 30), run_button, 3)
-            font.render_to(screen, (61, 330), "Follow her.", WHITE)
-            font.render_to(screen, (61, 400), "Run away!", WHITE)
+
+            if follow_button.collidepoint(pygame.mouse.get_pos()):
+                font.render_to(screen, (61, 330), "Follow her.", RED)
+            else:
+                font.render_to(screen, (61, 330), "Follow her.", WHITE)
+
+            if run_button.collidepoint(pygame.mouse.get_pos()):
+                font.render_to(screen, (61, 400), "Run away!", RED)
+            else:
+                font.render_to(screen, (61, 400), "Run away!", WHITE)
 
         dialogue_box.update()
         dialogue_box.draw(screen)
