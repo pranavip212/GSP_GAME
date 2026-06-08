@@ -14,7 +14,7 @@ def play_intro_s3(screen, clock):
         [("You feel the ground move...", WHITE)],
         [("The hallways twist and shift into a dark maze.", WHITE)],
         [("Mila abruptly grabs your wrist:", WHITE)],
-        [("We have to go. Now.", WHITE)], # change colour to purple once constant is made; mila speaks
+        [("We have to go. Now.", PURPLE)],
         [("You have to make a quick decision.", WHITE)],
         [("Do you trust Mila?", RED)]]
 
@@ -140,10 +140,10 @@ def play_transition_s3(screen, clock, choice):
                         play_intro_s4(screen, clock) # temporary; to be replaced when maze_game is implemented
 
         # --- GUI --- #
-        if choice == "follow_mila":
-            screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
+        screen.blit(maze, (0, 0))
+        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
 
+        if choice == "follow_mila":
             if current_line >= 1:
                 screen.blit(pygame.transform.scale(pygame.transform.flip(mila_happy_dark, True, False), (195, 520)), (520, 120))
 
@@ -152,9 +152,6 @@ def play_transition_s3(screen, clock, choice):
                 screen.blit(pygame.transform.scale(mila_normal_dark, (90, 240)), (190, 210))
 
         elif choice == "run_away":
-            screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
-
             if current_line >= 1:
                 screen.blit(breakfast_gray, (0, 0))
 
