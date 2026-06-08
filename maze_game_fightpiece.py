@@ -4,9 +4,9 @@ import math
 
 pygame.init()
 
-# =========================
+
 # SETTINGS
-# =========================
+
 
 WIDTH = 1000
 HEIGHT = 700
@@ -23,9 +23,9 @@ pygame.display.set_caption("Maze Fight Piece")
 
 clock = pygame.time.Clock()
 
-# =========================
+
 # LOAD ASSETS
-# =========================
+
 
 maze_img = pygame.image.load("assets/images/maze.png").convert()
 
@@ -41,9 +41,9 @@ zombie_img = pygame.transform.scale(zombie_img, (40, 40))
 target_img = pygame.image.load("assets/images/target.png").convert_alpha()
 target_img = pygame.transform.scale(target_img, (50, 50))
 
-# =========================
+
 # OBJECTS
-# =========================
+
 
 player = pygame.Rect(60, 60, 40, 40)
 
@@ -76,9 +76,9 @@ zombies = [
     }
 ]
 
-# =========================
+
 # FUNCTIONS
-# =========================
+
 
 def game_over():
     print("GAME OVER")
@@ -106,9 +106,9 @@ def move_towards(rect, target_pos, speed):
         rect.y += dy * speed
 
 
-# =========================
+
 # MAIN LOOP
-# =========================
+
 
 running = True
 
@@ -120,9 +120,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # =====================
+
     # PLAYER MOVEMENT
-    # =====================
+
 
     keys = pygame.key.get_pressed()
 
@@ -146,9 +146,9 @@ while running:
         if player.colliderect(wall):
             game_over()
 
-    # =====================
+
     # ZOMBIES
-    # =====================
+
 
     for zombie in zombies:
 
@@ -163,9 +163,9 @@ while running:
         if player.colliderect(zombie["rect"]):
             game_over()
 
-    # =====================
+
     # FOLLOW MODE
-    # =====================
+
 
     if FOLLOW_MODE:
 
@@ -196,16 +196,15 @@ while running:
         if player.colliderect(mila):
             game_over()
 
-    # =====================
+
     # TARGET
-    # =====================
+
 
     if player.colliderect(target):
         transformation()
 
-    # =====================
+
     # DRAW
-    # =====================
 
     screen.fill((20, 20, 20))
 
