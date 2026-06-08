@@ -8,20 +8,6 @@ from at_School_s2 import at_School
 from game_states import GameState
 
 # =====================================
-# COLORS
-# =====================================
-
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (220, 40, 40)
-GREEN = (0, 255, 0)
-YELLOW = (255, 255, 0)
-DARK_GRAY = (40, 40, 40)
-BLUE = (50, 120, 255)
-ZOMBIE_GREEN = (60, 120, 80)
-SKIN = (241, 194, 125)
-
-# =====================================
 # FONTS
 # =====================================
 pygame.font.init()
