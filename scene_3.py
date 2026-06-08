@@ -137,7 +137,7 @@ def play_transition_s3(screen, clock, choice):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        play_transformation_s4(screen, clock) # temporary; to be replaced when maze_game is implemented
+                        play_intro_s4(screen, clock) # temporary; to be replaced when maze_game is implemented
 
         # --- GUI --- #
         if choice == "follow_mila":
