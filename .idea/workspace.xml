@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME">
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
+    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="maze game">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/at_School_s2.py" beforeDir="false" afterPath="$PROJECT_DIR$/at_School_s2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,37 +42,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.chase_s3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.strongJesse.executor&quot;: &quot;Run&quot;,
-    &quot;Python.titlePage.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pranavip64/GSP_GAME_1/assets/images&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.chase_s3.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.strongJesse.executor": "Run",
+    "Python.titlePage.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/elizabethb90/PycharmProjects/GSP_GAME/assets/images",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\elizabethb90\PycharmProjects\GSP_GAME\assets\images" />
       <recent name="C:\Users\pranavip64\GSP_GAME_1\assets\images" />
       <recent name="C:\Users\Tushar Patalia\PycharmProjects\GSP_GAME_1" />
       <recent name="C:\Users\Tushar Patalia\PycharmProjects\GSP_GAME_1\.venv" />
       <recent name="C:\Users\pranavip64\GSP_GAME" />
-      <recent name="C:\Users\pranavip64\GSP_GAME\.venv" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pranavip64\GSP_GAME" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.titlePage">
+  <component name="RunManager">
     <configuration name="chase_s3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PythonProject" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -97,7 +93,6 @@
     </configuration>
     <configuration name="titlePage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PythonProject" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -164,14 +159,61 @@
       <option name="project" value="LOCAL" />
       <updated>1779992636362</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="maze game">
+      <created>1780941421244</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780941421244</updated>
+    </task>
+    <task id="LOCAL-00005" summary="maze game">
+      <created>1780941459956</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780941459956</updated>
+    </task>
+    <task id="LOCAL-00006" summary="maze game">
+      <created>1780941481459</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780941481459</updated>
+    </task>
+    <task id="LOCAL-00007" summary="maze game">
+      <created>1780942430861</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1780942430861</updated>
+    </task>
+    <task id="LOCAL-00008" summary="maze game">
+      <created>1780942474888</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1780942474888</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="buggy title page, unmodified from tut" />
     <MESSAGE value="start of intro scene and some pictures in there too" />
     <MESSAGE value="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME" />
-    <option name="LAST_COMMIT_MESSAGE" value="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME" />
+    <MESSAGE value="maze game" />
+    <option name="LAST_COMMIT_MESSAGE" value="maze game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
