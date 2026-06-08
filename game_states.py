@@ -5,4 +5,5 @@ class GameState(Enum):
     INTRO = 1
     FIGHT = 2
     GAME = 3
-    QUIT = 4
+    SCENE3 = 4
+    QUIT = 5
