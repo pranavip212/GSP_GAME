@@ -35,7 +35,7 @@ player_img = pygame.transform.scale(player_img, (40, 40))
 mila_img = pygame.image.load("assets/images/mila_happy_lit.png").convert_alpha()
 mila_img = pygame.transform.scale(mila_img, (40, 40))
 
-zombie_img = pygame.image.load("assets/images/zombie_hand.png").convert_alpha()
+zombie_img = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
 zombie_img = pygame.transform.scale(zombie_img, (40, 40))
 
 target_img = pygame.image.load("assets/images/target.png").convert_alpha()
