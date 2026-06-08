@@ -2,7 +2,7 @@ import pygame
 import player_data
 from constants import *
 from game_states import GameState
-#from images import day_hallway
+from images import day_hallway, breakfast, mila_pensive_lit
 from ui import DialogueBox
 
 
@@ -12,7 +12,7 @@ def at_School(screen, clock):
     day_hallway = pygame.image.load('assets/images/day_hallway.png').convert()
     day_hallway = pygame.transform.scale(day_hallway, (WIDTH, HEIGHT))
     mila_standing = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha()
-    mila_standing = pygame.transform.scale(mila_standing, (300, 300))
+    mila_standing = pygame.transform.scale(mila_standing, (200, 350))
 
     fade_alpha = 255
 
@@ -111,17 +111,16 @@ def at_School(screen, clock):
 
                         else:
                             show_choices = True
+
         screen.blit(day_hallway, (0, 0))
 
         if current_line >= 3:
-            screen.blit(
-                mila_standing,
-                (250, 100)
-            )
+            screen.blit(mila_standing,(450, 100))
 
-        overlay = pygame.Surface(
-            (WIDTH, HEIGHT)
-        )
+        if current_line >= 8:
+            screen.blit(breakfast,(0, 0))
+
+        overlay = pygame.Surface((WIDTH, HEIGHT))
 
         overlay.fill((20, 0, 0))
         overlay.set_alpha(40)

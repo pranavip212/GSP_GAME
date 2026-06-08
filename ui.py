@@ -76,26 +76,31 @@ class DialogueBox:
 
             partial_text = text[:chars_left]
 
-            words = partial_text.split(" ")
+            words = partial_text.split()
+
+            lines = []
+            current_line = ""
 
             for word in words:
 
-                word_text = word + " "
+                test_line = current_line + word + " "
 
-                word_width = self.font.get_rect(word_text).width
+                if self.font.get_rect(test_line).width <= max_width:
+                    current_line = test_line
+                else:
+                    lines.append(current_line)
+                    current_line = word + " "
 
-                # Wrap to next line if needed
-                if x + word_width > start_x + max_width:
-                    x = start_x
-                    y += line_height
+            if current_line:
+                lines.append(current_line)
 
+            for line in lines:
                 self.font.render_to(
                     screen,
-                    (x, y),
-                    word_text,
+                    (start_x, y),
+                    line,
                     color
                 )
-
-                x += word_width
+                y += line_height
 
             chars_drawn += len(partial_text)
