@@ -4,10 +4,9 @@ from titlePage import title_screen
 from scene1 import play_intro
 from fightscene import play_fight
 from at_School_s2 import at_School
-from intro_s3 import play_intro_s3
+from scene_3 import play_intro_s3
 
 pygame.init()
-
 screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 

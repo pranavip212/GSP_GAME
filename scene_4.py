@@ -1,22 +1,22 @@
 import pygame
 from constants import *
-from scene_4 import * # temporary; to be replaced when maze_game is implemented
 from ui import DialogueBox
 from images import *
 
 
-def play_intro_s3(screen, clock):
+def play_transformation_s4(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
-        [("Curious, you both wander the halls.", WHITE)],
-        [("Suddenly, the lights go out...", WHITE)],
-        [("You feel the ground move...", WHITE)],
-        [("The hallways twist and shift into a dark maze.", WHITE)],
-        [("Mila abruptly grabs your wrist:", WHITE)],
-        [("We have to go. Now.", WHITE)], # change colour to purple once constant is made; mila speaks
-        [("You have to make a quick decision.", WHITE)],
-        [("Do you trust Mila?", RED)]]
+        [("Suddenly, Mila starts to limp and slow down...", WHITE)],
+        [("She falls, clutching her head...", WHITE)],
+        [("Her breath turns ragged, her eyes bloodshot...", WHITE)],
+        [("Mila... are you okay?", WHITE)], # change colour to some colour once constant is made; player speaks
+        [("So... hungry...", WHITE)], # change colour to some colour once constant is made; mila speaks
+        [("She grabs your arm a little too tight.", WHITE)],
+        [("Great, the only other survivor is a zombie.", WHITE)],
+        [("Not to mention that she wants to eat you...", RED)],
+        [("What will you do now?", WHITE)],]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -38,10 +38,10 @@ def play_intro_s3(screen, clock):
             # Choice Event
             if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
                 if follow_button.collidepoint(event.pos):
-                    play_transition_s3(screen, clock, "follow_mila")
+                    play_final_s4(screen, clock, "follow_mila")
                     return
                 elif run_button.collidepoint(event.pos):
-                    play_transition_s3(screen, clock, "run_away")
+                    play_final_s4(screen, clock, "run_away")
                     return
 
             # Dialogue Event
@@ -55,7 +55,7 @@ def play_intro_s3(screen, clock):
                         show_choice = True
 
         # --- GUI --- #
-        screen.blit(hallway_lit, (0, 0))
+        screen.blit(maze, (0, 0))
         screen.blit(pygame.transform.scale(mila_normal_lit, (195, 520)), (520, 120))
 
         if current_line >= 1:
@@ -97,7 +97,7 @@ def play_intro_s3(screen, clock):
         pygame.display.flip()
 
 
-def play_transition_s3(screen, clock, choice):
+def play_final_s4(screen, clock, choice):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = []
@@ -137,7 +137,7 @@ def play_transition_s3(screen, clock, choice):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        play_transformation_s4(screen, clock) # temporary; to be replaced when maze_game is implemented
+                        print("transition to maze game here")
 
         # --- GUI --- #
         if choice == "follow_mila":
@@ -172,3 +172,10 @@ def play_transition_s3(screen, clock, choice):
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()
+
+def play_final_talk_s4():
+    pass
+
+
+def play_final_fight_s4():
+    pass
