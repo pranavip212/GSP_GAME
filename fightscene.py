@@ -4,6 +4,7 @@ import pygame
 import random
 import time
 from constants import *
+from at_School_s2 import at_School
 from game_states import GameState
 
 # =====================================
@@ -112,7 +113,7 @@ def play_fight(screen, clock):
                             bar_value = BAR_MAX
 
                 elif current_state == "win":
-                        return GameState.SCENE3
+                        at_School(screen, clock)
 
                 elif current_state == "lose":
                         return GameState.INTRO
