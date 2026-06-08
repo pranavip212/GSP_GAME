@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME">
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/at_School_s2.py" beforeDir="false" afterPath="$PROJECT_DIR$/at_School_s2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
-    </list>
+    <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="maze game" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,14 +157,40 @@
       <option name="project" value="LOCAL" />
       <updated>1779992636362</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="maze game">
+      <created>1780941421244</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780941421244</updated>
+    </task>
+    <task id="LOCAL-00005" summary="maze game">
+      <created>1780941459956</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780941459956</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="buggy title page, unmodified from tut" />
     <MESSAGE value="start of intro scene and some pictures in there too" />
     <MESSAGE value="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME" />
-    <option name="LAST_COMMIT_MESSAGE" value="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME" />
+    <MESSAGE value="maze game" />
+    <option name="LAST_COMMIT_MESSAGE" value="maze game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
