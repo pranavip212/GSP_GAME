@@ -1,5 +1,4 @@
 import pygame
-
 import player_data
 from constants import *
 from game_states import GameState
@@ -12,38 +11,29 @@ def at_School(screen, clock):
     # images
     day_hallway = pygame.image.load('assets/images/day_hallway.png').convert()
     day_hallway = pygame.transform.scale(day_hallway, (WIDTH, HEIGHT))
-    mila_standing = pygame.image.load("assets/images/mila_standing_bg.png").convert_alpha()
+    mila_standing = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha()
     mila_standing = pygame.transform.scale(mila_standing, (300, 300))
 
     fade_alpha = 255
 
     dialogue_lines = [
 
-        [("Running into the corridor, you look around at the school crawling with undead in uniforms", WHITE)],
+        [("Running into the corridor, you look around at "
+          "the school crawling with undead in uniforms", WHITE)],
 
         [("Distracted, you run into a tall figure...", WHITE)],
 
         [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes", WHITE)],
 
-        speaker(
-            "Mila",
-            PURPLE,
-            "O.M.G! What are you doing here?"
-        ),
+        [("MILA: O.M.G! What are you doing here?", PURPLE)],
 
-        speaker(
-            "You",
-            RED,
-            "RUNNING? HELLO? ZOMBIES???"
-        ),
+        [('YOU:  "RUNNING? HELLO? ZOMBIES???', WHITE)],
 
-        speaker(
-            "Mila",
-            PURPLE,
-            "OH RIGHT!"
-        ),
+        [('MILA: OH RIGHT!!', PURPLE)],
 
-        [("Mila's cold hand grabs yours and you run into the kitchen, locking the door.", WHITE)],
+
+        [("Mila's cold hand grabs yours and you "
+          "run into the kitchen, locking the door.", WHITE)],
 
         [("After catching your breath, you follow Mila to the stove, where she insists on making breakfast.", WHITE)],
 
@@ -56,11 +46,7 @@ def at_School(screen, clock):
 
         [("The scrambled eggs look fine, but the bacon… it's practically raw.", WHITE)],
 
-        speaker(
-            "Mila",
-            PURPLE,
-            "You like it crispy, right?"
-        ),
+        [('MILA: You like it crispy, right?', RED)],
 
         [("She asks, already biting into a bloody strip.", WHITE)],
 
@@ -324,43 +310,28 @@ def play_grab_knife(screen, clock):
 
     dialogue_lines = [
 
-        [("You look around the kitchen, an idea forming...", WHITE)],
+    [("You look around the kitchen, an idea forming...", WHITE)],
 
-        speaker(
-            "You",
-            RED,
-            "Mila, could you please grab me some pepper from the pantry?"
-        ),
+    [("YOU: Mila, could you please grab me some pepper from the pantry?", RED)],
 
-        speaker(
-            "Mila",
-            PURPLE,
-            "Sure, no problem."
-        ),
+    [("MILA: Sure, no problem.", PURPLE)],
 
-        [("When she is out of sight, you jump up and grab the sharpest knife you see...", WHITE)],
+    [("When she is out of sight, you jump up and grab the sharpest knife you see...", WHITE)],
 
-        [("You wrap it in a paper towel and hide it in your sock.", WHITE)],
+    [("You wrap it in a paper towel and hide it in your sock.", WHITE)],
 
-        [("With a racing heart, you sit back down.", WHITE)],
+    [("With a racing heart, you sit back down.", WHITE)],
 
-        [("However, Mila notices the open knife drawer...", WHITE)],
+    [("However, Mila notices the open knife drawer...", WHITE)],
 
-        speaker(
-            "Mila",
-            PURPLE,
-            "Uh hey... what are you doing there?"
-        ),
+    [("MILA: Uh hey... what are you doing there?", PURPLE)],
 
-        speaker(
-            "You",
-            RED,
-            "Uh... um..."
-        ),
+    [("YOU: Uh... um...", RED)],
 
-        [("[-5 TRUST]", DARK_RED)],
+    [("[-5 TRUST]", DARK_RED)],
 
-        [("Suddenly, the tension is broken by a scream in the hallway.", WHITE)]
+    [("Suddenly, the tension is broken by a scream in the hallway.", WHITE)]
+
     ]
 
     current_line = 0

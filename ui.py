@@ -53,44 +53,49 @@ class DialogueBox:
             self.finished = True
 
     def draw(self, screen):
-
+        #wrap text code fix was ai generated
         # dialogue background box
         pygame.draw.rect(screen, BLACK, self.rect)
         pygame.draw.rect(screen, (180, 30, 30), self.rect, 3)
 
-        x = self.rect.x + 20
+        start_x = self.rect.x + 20
+        x = start_x
         y = self.rect.y + 20
+
+        max_width = self.rect.width - 40
+        line_height = self.font.get_sized_height() + 5
 
         chars_drawn = 0
 
-        # draw each colored segment
         for text, color in self.text_segments:
 
-            chars_left = (
-                    self.visible_characters
-                    - chars_drawn
-            )
+            chars_left = self.visible_characters - chars_drawn
 
-            # stop if no chars left
             if chars_left <= 0:
                 break
 
-            # visible part of this segment
             partial_text = text[:chars_left]
 
-            self.font.render_to(
-                screen,
-                (x, y),
-                partial_text,
-                color
-            )
+            words = partial_text.split(" ")
 
-            # move text position forward
-            text_width, _ = self.font.get_rect(
-                partial_text
-            ).size
+            for word in words:
 
-            x += text_width
+                word_text = word + " "
 
-            # track total chars drawn
+                word_width = self.font.get_rect(word_text).width
+
+                # Wrap to next line if needed
+                if x + word_width > start_x + max_width:
+                    x = start_x
+                    y += line_height
+
+                self.font.render_to(
+                    screen,
+                    (x, y),
+                    word_text,
+                    color
+                )
+
+                x += word_width
+
             chars_drawn += len(partial_text)
