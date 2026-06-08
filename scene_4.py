@@ -2,9 +2,10 @@ import pygame
 from constants import *
 from ui import DialogueBox
 from images import *
+from player_data import *
 
 
-def play_transformation_s4(screen, clock):
+def play_intro_s4(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
@@ -23,8 +24,8 @@ def play_transformation_s4(screen, clock):
     dialogue_box.set_text(dialogue_lines[current_line])
 
     show_choice = False
-    follow_button = pygame.Rect((40, 310, 220, 60))
-    run_button = pygame.Rect((40, 380, 220, 60))
+    talk_button = pygame.Rect((40, 310, 340, 60))
+    fight_button = pygame.Rect((40, 380, 210, 60))
 
     # --- Main Game Loop --- #
     running = True
@@ -37,11 +38,11 @@ def play_transformation_s4(screen, clock):
 
             # Choice Event
             if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
-                if follow_button.collidepoint(event.pos):
-                    play_final_s4(screen, clock, "follow_mila")
+                if talk_button.collidepoint(event.pos):
+                    play_final_transition_s4(screen, clock, "talk")
                     return
-                elif run_button.collidepoint(event.pos):
-                    play_final_s4(screen, clock, "run_away")
+                elif fight_button.collidepoint(event.pos):
+                    play_final_transition_s4(screen, clock, "fight")
                     return
 
             # Dialogue Event
@@ -55,60 +56,47 @@ def play_transformation_s4(screen, clock):
                         show_choice = True
 
         # --- GUI --- #
-        screen.blit(maze, (0, 0))
-        screen.blit(pygame.transform.scale(mila_normal_lit, (195, 520)), (520, 120))
+        screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
 
         if current_line >= 1:
-            screen.blit(hallway_dark, (0, 0))
-
-        if current_line >= 3:
-            screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
-
-        if current_line >= 4:
-            screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (250, 640)), (485, 90))
-
-        if current_line >= 5:
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_pensive_dark, True, False), (250, 640)), (485, 90))
-
-        if current_line >= 6:
-            screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (520, 120))
 
         if show_choice:
-            pygame.draw.rect(screen, BLACK, follow_button)
-            pygame.draw.rect(screen, BLACK, run_button)
-            pygame.draw.rect(screen, (180, 30, 30), follow_button, 3)
-            pygame.draw.rect(screen, (180, 30, 30), run_button, 3)
+            pygame.draw.rect(screen, BLACK, talk_button)
+            pygame.draw.rect(screen, BLACK, fight_button)
+            pygame.draw.rect(screen, (180, 30, 30), talk_button, 3)
+            pygame.draw.rect(screen, (180, 30, 30), fight_button, 3)
 
-            if follow_button.collidepoint(pygame.mouse.get_pos()):
-                font.render_to(screen, (61, 330), "Follow her.", RED)
+            if talk_button.collidepoint(pygame.mouse.get_pos()):
+                font.render_to(screen, (61, 330), "Talk her out of it.", RED)
             else:
-                font.render_to(screen, (61, 330), "Follow her.", WHITE)
+                font.render_to(screen, (61, 330), "Talk her out of it.", WHITE)
 
-            if run_button.collidepoint(pygame.mouse.get_pos()):
-                font.render_to(screen, (61, 400), "Run away!", RED)
+            if fight_button.collidepoint(pygame.mouse.get_pos()):
+                font.render_to(screen, (61, 400), "Fight her!", RED)
             else:
-                font.render_to(screen, (61, 400), "Run away!", WHITE)
+                font.render_to(screen, (61, 400), "Fight her!", WHITE)
 
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()
 
 
-def play_final_s4(screen, clock, choice):
+def play_final_transition_s4(screen, clock, choice):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = []
 
-    if choice == "follow_mila":
+    if choice == "talk":
         dialogue_lines = [
-            [("Conflicted, you agree to follow Mila.", WHITE)],
-            [("She smiles slightly in response.", WHITE)],
-            [("She ushers you to go into the maze with her.", WHITE)]]
+            [("You hold up your hands defensively.", WHITE)],
+            [("Mila, listen to me!", WHITE)], # change colour, player speaks
+            [("She freezes, her body trembling...", WHITE)],
+            [("This isn't you!", WHITE)], # change colour, player speaks
+            [("You're stronger than this. I know you can fight it.", WHITE)], # change colour, player speaks
+            [("Her snarls fade, replaced by confusion.", WHITE)]]
 
-    elif choice == "run_away":
+    elif choice == "fight":
         dialogue_lines = [
             [("Conflicted, you think back to this morning...", WHITE)],
             [("You remember the breakfast Mila made you.", WHITE)],
@@ -140,7 +128,7 @@ def play_final_s4(screen, clock, choice):
                         print("transition to maze game here")
 
         # --- GUI --- #
-        if choice == "follow_mila":
+        if choice == "talk":
             screen.blit(maze, (0, 0))
             screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
 
@@ -151,7 +139,7 @@ def play_final_s4(screen, clock, choice):
                 screen.blit(maze, (0, 0))
                 screen.blit(pygame.transform.scale(mila_normal_dark, (90, 240)), (190, 210))
 
-        elif choice == "run_away":
+        elif choice == "fight":
             screen.blit(maze, (0, 0))
             screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
 

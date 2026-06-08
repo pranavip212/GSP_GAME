@@ -58,3 +58,5 @@ mila_happy_dark = pygame.image.load("assets/images/mila_happy_dark.png").convert
 mila_happy_dark = pygame.transform.scale(mila_happy_dark, mila_size)
 mila_pensive_dark = pygame.image.load("assets/images/mila_pensive_dark.png").convert_alpha()
 mila_pensive_dark = pygame.transform.scale(mila_pensive_dark, mila_size)
+mila_silhouette = pygame.image.load("assets/images/mila_silhouette.png").convert_alpha()
+mila_silhouette = pygame.transform.scale(mila_silhouette, mila_size)
