@@ -1,6 +1,4 @@
-import pygame
-from constants import *
-from scene_4 import * # temporary; to be replaced when maze_game is implemented
+from maze_game import play_maze_game
 from ui import DialogueBox
 from images import *
 
@@ -135,7 +133,10 @@ def play_transition_s3(screen, clock, choice):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        play_intro_s4(screen, clock) # temporary; to be replaced when maze_game is implemented
+                        if choice == "follow_mila":
+                            play_maze_game("follow_mode")
+                        elif choice == "run_away":
+                            play_maze_game("run_mode")
 
         # --- GUI --- #
         screen.blit(maze, (0, 0))

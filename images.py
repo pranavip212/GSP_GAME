@@ -27,20 +27,22 @@ breakfast_gray = pygame.transform.scale(breakfast_gray, (WIDTH, HEIGHT))
 maze = pygame.image.load('assets/images/maze.png').convert()
 maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
 
-maze_above = pygame.image.load('assets/images/maze.png').convert() # tba
-maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
 
 # --- Character Sprites --- #
+target_sprite = pygame.image.load("assets/images/target.png").convert_alpha() # replace with another image
+target_sprite = pygame.transform.scale(target_sprite, (360, 360))
 
 # made by Chelsea
-player_sprite = pygame.image.load("assets/images/player_sprite.png").convert_alpha() # tba
-player_sprite = pygame.transform.scale(player_sprite, (700, 500))
-mila_sprite = pygame.image.load("assets/images/mila_sprite.png").convert_alpha() # tba
-mila_sprite = pygame.transform.scale(mila_sprite, (700, 500))
+player_sprite = pygame.image.load("assets/images/player_sprite.png").convert_alpha()
+player_sprite = pygame.transform.scale(player_sprite, (130, 130))
+mila_sprite = pygame.image.load("assets/images/mila_sprite.png").convert_alpha()
+mila_sprite = pygame.transform.scale(mila_sprite, (180, 150))
 
 # source: https://www.vecteezy.com/png/72637392-pixelated-zombie-head-undead-horror-in-retro-style-549
 zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
 zombie = pygame.transform.scale(zombie, (300, 300))
+zombie_sprite = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha() # replace with another image
+zombie_sprite = pygame.transform.scale(zombie_sprite, (300, 300))
 
 # source: https://x.com/9E0_D0/status/1456289863679070209, edited by Chelsea
 zombie_hand = pygame.image.load("assets/images/zombie_hand.png").convert_alpha()

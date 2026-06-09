@@ -1,5 +1,3 @@
-print('fight scene loaded ')
-
 import pygame
 import random
 import time

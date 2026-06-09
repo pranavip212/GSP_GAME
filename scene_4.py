@@ -1,5 +1,3 @@
-import pygame
-from constants import *
 from player_data import *
 from ui import DialogueBox
 from images import *
