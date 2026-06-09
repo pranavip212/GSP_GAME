@@ -1,5 +1,6 @@
 from maze_game import play_maze_game
 from ui import DialogueBox
+from constants import WIDTH, HEIGHT
 from images import *
 
 
