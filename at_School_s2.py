@@ -2,17 +2,16 @@ import pygame
 import player_data
 from constants import *
 from game_states import GameState
-from images import day_hallway, breakfast, mila_pensive_lit
+from images import day_hallway, breakfast, mila_normal_lit, mila_pensive_lit, plate_of_bacon, kitchen, mila_happy_lit
 from ui import DialogueBox
 
 
 
 def at_School(screen, clock):
     # images
-    day_hallway = pygame.image.load('assets/images/day_hallway.png').convert()
-    day_hallway = pygame.transform.scale(day_hallway, (WIDTH, HEIGHT))
-    mila_standing = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha()
-    mila_standing = pygame.transform.scale(mila_standing, (200, 350))
+    #
+    # mila_standing = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha()
+    # mila_standing = pygame.transform.scale(mila_standing, (200, 350))
 
     fade_alpha = 255
 
@@ -115,10 +114,13 @@ def at_School(screen, clock):
         screen.blit(day_hallway, (0, 0))
 
         if current_line >= 3:
-            screen.blit(mila_standing,(450, 100))
+            screen.blit(mila_normal_lit,(450, 100))
 
         if current_line >= 8:
             screen.blit(breakfast,(0, 0))
+
+        if current_line >=11:
+            screen.blit(plate_of_bacon, (0,0))
 
         overlay = pygame.Surface((WIDTH, HEIGHT))
 
@@ -229,6 +231,8 @@ def play_eat_bacon (screen, clock):
 
 
 
+
+
     # check runtime
     while True:
         clock.tick(60)
@@ -254,7 +258,12 @@ def play_eat_bacon (screen, clock):
                         else:
                             return GameState.GAME
 
-        screen.fill(BLACK)
+        screen.blit(plate_of_bacon, (0, 0))
+        if current_line >= 3:
+            screen.blit(kitchen, (0,0))
+            screen.blit(mila_happy_lit, (450, 100))
+
+
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()
@@ -298,14 +307,21 @@ def play_refuse_food (screen, clock):
                         else:
                             return GameState.GAME
 
+        screen.blit(kitchen, (0, 0))
+        if current_line >= 1:
+            screen.blit(mila_pensive_lit, (450, 100))
+
         # visuals
         # fix lines here
-        screen.fill(BLACK)
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()
 
 def play_grab_knife(screen, clock):
+    player_data.trust -=5
+    player_data.has_knife = True
+
+
 
     dialogue_lines = [
 

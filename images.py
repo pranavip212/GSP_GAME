@@ -22,6 +22,8 @@ breakfast = pygame.image.load('assets/images/breakfast.png').convert()
 breakfast = pygame.transform.scale(breakfast, (WIDTH, HEIGHT))
 breakfast_gray = pygame.image.load('assets/images/breakfast_gray.png').convert()
 breakfast_gray = pygame.transform.scale(breakfast_gray, (WIDTH, HEIGHT))
+plate_of_bacon = pygame.image.load('assets/images/plate_of_bacon.png').convert()
+plate_of_bacon = pygame.transform.scale(plate_of_bacon, (WIDTH, HEIGHT))
 
 # source: https://ukpurgatorio.miraheze.org/wiki/E-2:_Palace_of_Black_Spires, edited by Chelsea
 maze = pygame.image.load('assets/images/maze.png').convert()
@@ -66,3 +68,8 @@ mila_tears_dark = pygame.image.load("assets/images/mila_tears_dark.png").convert
 mila_tears_dark = pygame.transform.scale(mila_tears_dark, mila_size)
 mila_silhouette = pygame.image.load("assets/images/mila_silhouette.png").convert_alpha()
 mila_silhouette = pygame.transform.scale(mila_silhouette, mila_size)
+
+#Kitchen
+#Source: https://es.pinterest.com/pin/849702654685205639/
+kitchen = pygame.image.load("assets/images/kitchen.png").convert_alpha()
+kitchen = pygame.transform.scale(kitchen, (WIDTH, HEIGHT))
