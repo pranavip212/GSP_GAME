@@ -14,7 +14,7 @@ def play_intro_s3(screen, clock):
         [("You feel the ground move...", WHITE)],
         [("The hallways twist and shift into a dark maze.", WHITE)],
         [("Mila abruptly grabs your wrist:", WHITE)],
-        [("We have to go. Now.", PURPLE)],
+        [('"We have to go. Now."', PURPLE)],
         [("You have to make a quick decision.", WHITE)],
         [("Do you trust Mila?", RED)]]
 
@@ -98,8 +98,6 @@ def play_intro_s3(screen, clock):
 
 
 def play_transition_s3(screen, clock, choice):
-    font = pygame.freetype.SysFont("consolas", 28, bold=True)
-
     dialogue_lines = []
 
     if choice == "follow_mila":

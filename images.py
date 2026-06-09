@@ -23,7 +23,7 @@ breakfast = pygame.transform.scale(breakfast, (WIDTH, HEIGHT))
 breakfast_gray = pygame.image.load('assets/images/breakfast_gray.png').convert()
 breakfast_gray = pygame.transform.scale(breakfast_gray, (WIDTH, HEIGHT))
 
-# source: https://ukpurgatorio.miraheze.org/wiki/E-2:_Palace_of_Black_Spires
+# source: https://ukpurgatorio.miraheze.org/wiki/E-2:_Palace_of_Black_Spires, edited by Chelsea
 maze = pygame.image.load('assets/images/maze.png').convert()
 maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
 
@@ -31,9 +31,11 @@ maze_above = pygame.image.load('assets/images/maze.png').convert() # tba
 maze_above = pygame.transform.scale(maze_above, (WIDTH, HEIGHT))
 
 # --- Character Sprites --- #
-player_sprite = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha() # tba
+
+# made by Chelsea
+player_sprite = pygame.image.load("assets/images/player_sprite.png").convert_alpha() # tba
 player_sprite = pygame.transform.scale(player_sprite, (700, 500))
-mila_sprite = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha() # tba
+mila_sprite = pygame.image.load("assets/images/mila_sprite.png").convert_alpha() # tba
 mila_sprite = pygame.transform.scale(mila_sprite, (700, 500))
 
 # source: https://www.vecteezy.com/png/72637392-pixelated-zombie-head-undead-horror-in-retro-style-549
@@ -42,7 +44,7 @@ zombie = pygame.transform.scale(zombie, (300, 300))
 
 # source: https://x.com/9E0_D0/status/1456289863679070209, edited by Chelsea
 zombie_hand = pygame.image.load("assets/images/zombie_hand.png").convert_alpha()
-zombie_hand = pygame.transform.scale(zombie_hand, (414, 378))
+zombie_hand = pygame.transform.scale(zombie_hand, (414, 372))
 
 # source: https://www.reddit.com/r/PixelArt/comments/v8d4e3/is_she_too_cute_to_be_a_horror_game_protagonist/, edited by Chelsea
 mila_size = (270, 720)
@@ -58,5 +60,7 @@ mila_happy_dark = pygame.image.load("assets/images/mila_happy_dark.png").convert
 mila_happy_dark = pygame.transform.scale(mila_happy_dark, mila_size)
 mila_pensive_dark = pygame.image.load("assets/images/mila_pensive_dark.png").convert_alpha()
 mila_pensive_dark = pygame.transform.scale(mila_pensive_dark, mila_size)
+mila_tears_dark = pygame.image.load("assets/images/mila_tears_dark.png").convert_alpha()
+mila_tears_dark = pygame.transform.scale(mila_tears_dark, mila_size)
 mila_silhouette = pygame.image.load("assets/images/mila_silhouette.png").convert_alpha()
 mila_silhouette = pygame.transform.scale(mila_silhouette, mila_size)

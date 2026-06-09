@@ -1,8 +1,8 @@
 import pygame
 from constants import *
+from player_data import *
 from ui import DialogueBox
 from images import *
-from player_data import *
 
 
 def play_intro_s4(screen, clock):
@@ -12,10 +12,10 @@ def play_intro_s4(screen, clock):
         [("Suddenly, Mila starts to limp and slow down...", WHITE)],
         [("She falls, clutching her head...", WHITE)],
         [("Her breath turns ragged, her eyes bloodshot...", WHITE)],
-        [("Mila... are you okay?", WHITE)], # change colour; player speaks
-        [("So... hungry...", PURPLE)],
+        [('"Mila... are you okay?"', WHITE)], # change colour; player speaks
+        [('"So... hungry..."', PURPLE)],
         [("She grabs your arm a little too tight.", WHITE)],
-        [("Great, the only other survivor is a zombie.", WHITE)],
+        [("Great, the only other survivor is a zombie, too.", WHITE)],
         [("Not to mention that she wants to eat you...", RED)],
         [("What will you do now?", WHITE)],]
 
@@ -57,7 +57,7 @@ def play_intro_s4(screen, clock):
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
-        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (70, 190)), (480, 230))
+        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (70, 190)), (490, 230))
 
         if current_line >= 1:
             screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -93,25 +93,23 @@ def play_intro_s4(screen, clock):
 
 
 def play_final_transition_s4(screen, clock, choice):
-    font = pygame.freetype.SysFont("consolas", 28, bold=True)
-
     dialogue_lines = []
 
     if choice == "talk":
         dialogue_lines = [
             [("You hold up your hands defensively.", WHITE)],
-            [("Mila, listen to me!", WHITE)], # change colour, player speaks
+            [('"Mila, listen to me!"', WHITE)], # change colour, player speaks
             [("She freezes, her body trembling...", WHITE)],
-            [("This isn't you!", WHITE)], # change colour, player speaks
-            [("You're stronger than this. I know you can fight it.", WHITE)], # change colour, player speaks
+            [('"This is not you!"', WHITE)], # change colour, player speaks
+            [('"You are stronger than this. I know you can fight it."', WHITE)], # change colour, player speaks
             [("Her snarls fade, replaced by confusion.", WHITE)]]
 
     elif choice == "fight":
         dialogue_lines = [
             [("You hold up your hands defensively.", WHITE)],
-            [("I don't want to do this, Mila!", WHITE)],
+            [('"Do not make me do this, Mila!"', WHITE)],
             [("Despite your warning, she only growls.", WHITE)],
-            [("Her claws slash through the air as you duck and dodge.", WHITE)]]
+            [("She retaliates by attacking you while you duck and dodge!", WHITE)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -134,37 +132,167 @@ def play_final_transition_s4(screen, clock, choice):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        print("transition to maze game here")
+                        if choice == "talk":
+                            play_final_talk_s4(screen, clock)
+                        elif choice == "fight":
+                            play_final_fight_s4(screen, clock)
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
         screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))
 
-        if choice == "fight":
-            screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
+        dialogue_box.update()
+        dialogue_box.draw(screen)
+        pygame.display.flip()
 
+def play_final_talk_s4(screen, clock):
+    font = pygame.freetype.SysFont("consolas", 28, bold=True)
+
+    dialogue_lines = []
+
+    if trust >= 1:
+        dialogue_lines = [
+            [("Mila gasps, her eyes returning into normal.", WHITE)],
+            [('"I... I remember now."', PURPLE)],
+            [('"You are right. I am still human..."', PURPLE)],
+            [("Her voice trembles as she collapses onto the floor, human once more.", WHITE)]]
+
+    elif trust < 1:
+        dialogue_lines = [
+            [("Her eyes flicker for a split second...", WHITE)],
+            [("..before sharpening again, full of rage.", WHITE)],
+            [('"I cannot... fight it..."', PURPLE)],
+            [("She growls and lunges at you, her claws tearing through the air.", WHITE)]]
+
+    current_line = 0
+    dialogue_box = DialogueBox((40, 450, 720, 120))
+    dialogue_box.set_text(dialogue_lines[current_line])
+
+    # --- Main Game Loop --- #
+    running = True
+    while running:
+        clock.tick(60)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            # Dialogue Event
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    current_line += 1
+
+                    if current_line < len(dialogue_lines):
+                        dialogue_box.set_text(dialogue_lines[current_line])
+                    else:
+                        if trust >= 1:
+                            print("good ending")
+                            # play_ending(screen, clock, "talk", "good")
+                        elif trust < 1:
+                            print("bad ending")
+                            # play_ending(screen, clock, "talk", "bad")
+
+        # --- GUI --- #
+        screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
+
+        if trust >= 1:
             if current_line >= 1:
-                screen.blit(breakfast_gray, (0, 0))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_pensive_dark, True, False), (195, 520)), (400, 120))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
 
             if current_line >= 2:
-                screen.blit(maze, (0, 0))
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_pensive_dark, True, False), (195, 520)), (520, 120))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
 
             if current_line >= 3:
-                screen.blit(maze, (0, 0))
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (520, 120))
+                screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
 
-            if current_line >= 4:
+        elif trust < 1:
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
+
+            if current_line >= 1:
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))
+
+            if current_line >= 3:
                 screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
 
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()
 
-def play_final_talk_s4():
-    pass
 
+def play_final_fight_s4(screen, clock):
+    font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
-def play_final_fight_s4():
-    pass
+    dialogue_lines = []
+
+    if has_knife:
+        dialogue_lines = [
+            [("You reach to your ankle and take the knife out, holding it in front of yourself.", WHITE)],
+            [("With all your energy, you knock Mila to the ground.", WHITE)],
+            [("She lies there panting, and her eyes slowly fade back to normal.", WHITE)],
+            [('"It is... over..."', PURPLE)]]
+
+    elif not has_knife:
+        dialogue_lines = [
+            [("However, you misjudge her next move, and her claws rip into you.", WHITE)],
+            [("Pain shoots through your body as you collapse to the ground.", WHITE)],
+            [("Her snarls are the last thing you hear before you fade into darkness...", WHITE)]]
+
+    current_line = 0
+    dialogue_box = DialogueBox((40, 450, 720, 120))
+    dialogue_box.set_text(dialogue_lines[current_line])
+
+    # --- Main Game Loop --- #
+    running = True
+    while running:
+        clock.tick(60)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            # Dialogue Event
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    current_line += 1
+
+                    if current_line < len(dialogue_lines):
+                        dialogue_box.set_text(dialogue_lines[current_line])
+                    else:
+                        if has_knife:
+                            print("good ending")
+                            # play_ending(screen, clock, "fight", "good")
+                        elif not has_knife:
+                            print("bad ending")
+                            # play_ending(screen, clock, "fight", "bad")
+
+        # --- GUI --- #
+        screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
+
+        if trust >= 1:
+            if current_line >= 1:
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_pensive_dark, True, False), (195, 520)), (400, 120))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
+
+            if current_line >= 2:
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
+
+            if current_line >= 3:
+                screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+
+        elif trust < 1:
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
+
+            if current_line >= 1:
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))
+
+            if current_line >= 3:
+                screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+
+        dialogue_box.update()
+        dialogue_box.draw(screen)
+        pygame.display.flip()
