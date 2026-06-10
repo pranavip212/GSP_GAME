@@ -2,8 +2,10 @@ import pygame
 import player_data
 from constants import *
 from game_states import GameState
-from images import day_hallway, breakfast, mila_normal_lit, mila_pensive_lit, plate_of_bacon, kitchen, mila_happy_lit
+from images import day_hallway, breakfast, mila_normal_lit, mila_pensive_lit, plate_of_bacon, kitchen, mila_happy_lit, \
+    knife_in_sink
 from ui import DialogueBox
+from scene_3 import play_intro_s3
 
 
 
@@ -66,9 +68,9 @@ def at_School(screen, clock):
 
     show_choices = False
 
-    eat_button = pygame.Rect((40, 280, 250, 60))
-    refuse_button = pygame.Rect((40, 350, 250, 60))
-    knife_button = pygame.Rect((40, 420, 250, 60))
+    eat_button = pygame.Rect((40, 240, 250, 60))
+    refuse_button = pygame.Rect((40, 310, 250, 60))
+    knife_button = pygame.Rect((40, 380, 250, 60))
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     #choice loop
@@ -186,21 +188,21 @@ def at_School(screen, clock):
 
             font.render_to(
                 screen,
-                (60, 300),
+                (60, 260),
                 "Eat Bacon",
                 eat_color
             )
 
             font.render_to(
                 screen,
-                (60, 370),
+                (60, 330),
                 "Refuse Food",
                 refuse_color
             )
 
             font.render_to(
                 screen,
-                (60, 440),
+                (60, 400),
                 "Grab Knife",
                 knife_color
             )
@@ -233,7 +235,6 @@ def play_eat_bacon (screen, clock):
 
 
 
-    # check runtime
     while True:
         clock.tick(60)
 
@@ -256,7 +257,7 @@ def play_eat_bacon (screen, clock):
                                 dialogue_lines[current_line])
 
                         else:
-                            return GameState.GAME
+                            play_intro_s3(screen, clock)
 
         screen.blit(plate_of_bacon, (0, 0))
         if current_line >= 3:
@@ -305,7 +306,7 @@ def play_refuse_food (screen, clock):
                                 dialogue_lines[current_line])
 
                         else:
-                            return GameState.GAME
+                            play_intro_s3(screen, clock)
 
         screen.blit(kitchen, (0, 0))
         if current_line >= 1:
@@ -337,7 +338,7 @@ def play_grab_knife(screen, clock):
 
     [("With a racing heart, you sit back down.", WHITE)],
 
-    [("However, Mila notices the open knife drawer...", WHITE)],
+    [("However, Mila notices the missing knife...", WHITE)],
 
     [("MILA: Uh hey... what are you doing there?", PURPLE)],
 
@@ -373,28 +374,40 @@ def play_grab_knife(screen, clock):
                 if event.key == pygame.K_SPACE:
 
                     if not dialogue_box.finished:
-
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments
-                        )
+                        dialogue_box.visible_characters = len(dialogue_box.text_segments)
 
                     else:
 
                         current_line += 1
 
                         if current_line < len(dialogue_lines):
-
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line]
-                            )
+                            dialogue_box.set_text(dialogue_lines[current_line])
 
                         else:
-                            return GameState.GAME
+                            play_intro_s3(screen, clock)
 
-        screen.fill(BLACK)
+        screen.blit(kitchen, (0, 0))
+        if current_line >= 1:
+            screen.blit(mila_normal_lit, (450, 100))
+
+        if current_line >= 2:
+            screen.blit(mila_happy_lit, (450, 100))
+
+        if current_line >= 4:
+            screen.blit(knife_in_sink, (0,0))
+
+        if current_line >= 6:
+            screen.blit(kitchen, (0,0))
+            screen.blit(mila_happy_lit, (450, 100))
+
+        if current_line >= 7:
+            screen.blit(mila_pensive_lit, (450, 100))
 
         dialogue_box.update()
         dialogue_box.draw(screen)
 
         pygame.display.flip()
+
+
+
 
