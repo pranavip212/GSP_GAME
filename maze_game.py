@@ -1,6 +1,6 @@
 import sys
 import math
-import time
+from ui import DialogueBox
 from images import *
 from scene_4 import play_intro_s4
 
@@ -10,13 +10,28 @@ def play_maze_game(mode):
     player_speed = 4
     mila_speed = 3
     chase_speed = 3.5
+    player_start = (60, 60)
+    mila_start = (30, 60)
 
     maze_screen = pygame.display.set_mode((maze_width, maze_height))
     clock = pygame.time.Clock()
 
+    instruction = [
+        [("Sneak past the zombies and get to the exit! Don't alert them by touching the walls!", RED)],
+        [("Run away from Mila and get to the exit! Don't alert the zombies by touching the walls!", RED)]]
+    dialogue_box = DialogueBox((10, 600, 720, 120))
+
+    if mode == "follow_mode":
+        dialogue_box.set_text(instruction[0])
+    elif mode == "run_mode":
+        dialogue_box.set_text(instruction[1])
+
+    game_over_box = DialogueBox((205, 300, 610, 60))
+    game_over_box.set_text([["You got caught! Press SPACE to retry!", RED]])
+
     # --- Game Objects --- #
-    player = pygame.Rect(60, 60, 40, 40)
-    mila = pygame.Rect(30, 60, 40, 40)
+    player = pygame.Rect(*player_start, 40, 40)
+    mila = pygame.Rect(*mila_start, 40, 40)
     target = pygame.Rect(900, 600, 50, 50)
 
     walls = [
@@ -34,13 +49,6 @@ def play_maze_game(mode):
         {"rect": pygame.Rect(300, 100, 40, 40), "dir": 1},
         {"rect": pygame.Rect(700, 400, 40, 40), "dir": -1}]
 
-    def game_over():
-
-        print("GAME OVER") # to be edited
-        pygame.quit()
-        sys.exit()
-
-
     def move_towards(rect, target_pos, speed):
         dx = target_pos[0] - rect.centerx
         dy = target_pos[1] - rect.centery
@@ -52,7 +60,12 @@ def play_maze_game(mode):
             rect.x += dx * speed
             rect.y += dy * speed
 
+    def reset_game():
+        player.topleft = player_start
+        mila.topleft = mila_start
+
     # --- Main Game Loop --- #
+    game_over_state = False
     running = True
     while running:
         clock.tick(60)
@@ -61,67 +74,76 @@ def play_maze_game(mode):
             if event.type == pygame.QUIT:
                 running = False
 
-        # Player Movement
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_LEFT]:
-            player.x -= player_speed
-        if keys[pygame.K_RIGHT]:
-            player.x += player_speed
-        if keys[pygame.K_UP]:
-            player.y -= player_speed
-        if keys[pygame.K_DOWN]:
-            player.y += player_speed
-
-        # Lose Conditions
-        for wall in walls:
-            if player.colliderect(wall):
-                game_over()
-
-        for zombie_enemy in zombies:
-            zombie_enemy["rect"].x += zombie_enemy["dir"] * 2
-
-            if zombie_enemy["rect"].x < 250:
-                zombie_enemy["dir"] = 1
-            if zombie_enemy["rect"].x > 500:
-                zombie_enemy["dir"] = -1
-            if player.colliderect(zombie_enemy["rect"]):
-                game_over()
-
-
-        # Follow Mode
-        if mode == "follow_mode":
-            distance = math.hypot(player.centerx - mila.centerx, player.centery - mila.centery)
-
-            if distance > 80:
-                move_towards(mila, player.center, mila_speed)
-
-        # Run Mode
-        if mode == "run_mode":
-            move_towards(mila, player.center, chase_speed)
-
-            if player.colliderect(mila):
-                game_over()
-
-
-        # Win Condition
-        if player.colliderect(target):
-            screen = pygame.display.set_mode((WIDTH, HEIGHT))
-            play_intro_s4(screen, clock)
-
+            if event.type == pygame.KEYDOWN:
+                if game_over_state and event.key == pygame.K_SPACE:
+                    reset_game()
+                    game_over_state = False
 
         # --- GUI --- #
-        maze_screen.fill((20, 20, 20))
-
-        for wall in walls:
-            pygame.draw.rect(maze_screen, (80, 80, 80), wall)
-
+        maze_screen.blit(maze_ground, (0, 0))
+        maze_screen.blit(pygame.transform.scale(player_sprite, (50, 50)), player)
+        maze_screen.blit(pygame.transform.scale(mila_sprite, (60, 50)), mila)
         maze_screen.blit(pygame.transform.scale(target_sprite, (50, 50)), target)
 
+        for wall in walls:
+            pygame.draw.rect(maze_screen, (30, 30, 30), wall)
         for zombie_enemy in zombies:
-            maze_screen.blit(pygame.transform.scale(zombie_sprite, (50, 50)), zombie_enemy["rect"])
+            maze_screen.blit(pygame.transform.scale(zombie, (50, 50)), zombie_enemy["rect"])
 
-        maze_screen.blit(pygame.transform.scale(player_sprite, (50, 50)), player)
-        maze_screen.blit(pygame.transform.scale(mila_sprite, (50, 50)), mila)
+        # --- Game State --- #
+        if not game_over_state:
+
+            # Player Movement
+            keys = pygame.key.get_pressed()
+
+            if keys[pygame.K_LEFT]:
+                player.x -= player_speed
+            if keys[pygame.K_RIGHT]:
+                player.x += player_speed
+            if keys[pygame.K_UP]:
+                player.y -= player_speed
+            if keys[pygame.K_DOWN]:
+                player.y += player_speed
+
+            # Lose Conditions
+            for wall in walls:
+                if player.colliderect(wall):
+                    game_over_state = True
+
+            for zombie_enemy in zombies:
+                zombie_enemy["rect"].x += zombie_enemy["dir"] * 2
+
+                if zombie_enemy["rect"].x < 250:
+                    zombie_enemy["dir"] = 1
+                if zombie_enemy["rect"].x > 500:
+                    zombie_enemy["dir"] = -1
+
+                if player.colliderect(zombie_enemy["rect"]):
+                    game_over_state = True
+
+            # Follow Mode
+            if mode == "follow_mode":
+                distance = math.hypot(player.centerx - mila.centerx, player.centery - mila.centery)
+                if distance > 80:
+                    move_towards(mila, player.center, mila_speed)
+
+            # Run Mode
+            if mode == "run_mode":
+                move_towards(mila, player.center, chase_speed)
+                if player.colliderect(mila):
+                    game_over_state = True
+
+            # Win Condition
+            if player.colliderect(target):
+                screen = pygame.display.set_mode((WIDTH, HEIGHT))
+                play_intro_s4(screen, clock)
+
+        elif game_over_state:
+            game_over_box.update()
+            game_over_box.draw(maze_screen)
+
+        else:
+            dialogue_box.update()
+            dialogue_box.draw(maze_screen)
 
         pygame.display.flip()

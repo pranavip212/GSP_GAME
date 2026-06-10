@@ -3,7 +3,6 @@ from constants import *
 
 screen = pygame.display.set_mode((800, 600))
 
-# --- Backgrounds --- #
 # source: https://www.artstation.com/artwork/r9keZL
 bedroom = pygame.image.load('assets/images/bedroom.png').convert()
 bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
@@ -22,6 +21,7 @@ breakfast = pygame.image.load('assets/images/breakfast.png').convert()
 breakfast = pygame.transform.scale(breakfast, (WIDTH, HEIGHT))
 breakfast_gray = pygame.image.load('assets/images/breakfast_gray.png').convert()
 breakfast_gray = pygame.transform.scale(breakfast_gray, (WIDTH, HEIGHT))
+
 plate_of_bacon = pygame.image.load('assets/images/plate_of_bacon.png').convert()
 plate_of_bacon = pygame.transform.scale(plate_of_bacon, (WIDTH, HEIGHT))
 
@@ -29,9 +29,12 @@ plate_of_bacon = pygame.transform.scale(plate_of_bacon, (WIDTH, HEIGHT))
 maze = pygame.image.load('assets/images/maze.png').convert()
 maze = pygame.transform.scale(maze, (WIDTH, HEIGHT))
 
+# source: https://www.magnific.com/premium-ai-image/pixel-art-depicting-stark-black-brick-wall-against-pristine-white-backdrop_342271985.htm
+maze_ground = pygame.image.load('assets/images/maze_ground.png').convert()
+maze_ground = pygame.transform.scale(maze_ground, (1000, 700))
 
-# --- Character Sprites --- #
-target_sprite = pygame.image.load("assets/images/target.png").convert_alpha() # replace with another image
+# source: https://www.vecteezy.com/vector-art/40531762-green-exit-sign-in-pixel-art-style
+target_sprite = pygame.image.load("assets/images/target_sprite.png").convert_alpha()
 target_sprite = pygame.transform.scale(target_sprite, (360, 360))
 
 # made by Chelsea
@@ -43,8 +46,6 @@ mila_sprite = pygame.transform.scale(mila_sprite, (180, 150))
 # source: https://www.vecteezy.com/png/72637392-pixelated-zombie-head-undead-horror-in-retro-style-549
 zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
 zombie = pygame.transform.scale(zombie, (300, 300))
-zombie_sprite = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha() # replace with another image
-zombie_sprite = pygame.transform.scale(zombie_sprite, (300, 300))
 
 # source: https://x.com/9E0_D0/status/1456289863679070209, edited by Chelsea
 zombie_hand = pygame.image.load("assets/images/zombie_hand.png").convert_alpha()
