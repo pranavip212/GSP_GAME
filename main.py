@@ -2,7 +2,7 @@ import pygame
 from game_states import GameState
 from titlePage import title_screen
 from scene1 import play_intro
-from fightscene import play_fight
+from fight_game import play_fight
 from at_School_s2 import at_School
 from scene_3 import play_intro_s3
 

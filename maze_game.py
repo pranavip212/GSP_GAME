@@ -131,7 +131,6 @@ def play_maze_game(mode):
             if mode == "run_mode":
                 move_towards(mila, player.center, mila_speed)
                 if time.time() - time.time() > 2:
-
                     if player.colliderect(mila):
                         game_over_state = True
 

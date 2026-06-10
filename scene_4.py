@@ -1,4 +1,3 @@
-import time
 from endings import *
 from player_data import *
 from ui import DialogueBox
@@ -12,8 +11,8 @@ def play_intro_s4(screen, clock):
         [("Suddenly, Mila starts to limp and slow down...", WHITE)],
         [("She falls, clutching her head...", WHITE)],
         [("Her breath turns ragged, her eyes bloodshot...", WHITE)],
-        [('"Mila... are you okay?"', WHITE)], # change colour; player speaks
-        [('"So... hungry..."', PURPLE)],
+        [("YOU: Mila... are you okay?", WHITE)],
+        [("MILA: So... hungry...", PURPLE)],
         [("She grabs your arm a little too tight.", WHITE)],
         [("Great, the only other survivor is a zombie, too.", WHITE)],
         [("Not to mention that she wants to eat you...", RED)],
@@ -98,16 +97,16 @@ def play_final_transition_s4(screen, clock, choice):
     if choice == "talk":
         dialogue_lines = [
             [("You hold up your hands defensively.", WHITE)],
-            [('"Mila, listen to me!"', WHITE)], # change colour, player speaks
+            [("YOU: Mila, listen to me!", WHITE)],
             [("She freezes, her body trembling...", WHITE)],
-            [('"This is not you!"', WHITE)], # change colour, player speaks
-            [('"You are stronger than this. I know you can fight it."', WHITE)], # change colour, player speaks
+            [("YOU: This isn't you!", WHITE)],
+            [("YOU: You're stronger than this. I know you can fight it.", WHITE)],
             [("Her snarls fade, replaced by confusion.", WHITE)]]
 
     elif choice == "fight":
         dialogue_lines = [
             [("You hold up your hands defensively.", WHITE)],
-            [('"Do not make me do this, Mila!"', WHITE)],
+            [("YOU: Don't make me do this, Mila!", WHITE)],
             [("Despite your warning, she only growls.", WHITE)],
             [("She retaliates by attacking you while you duck and dodge!", WHITE)]]
 
@@ -152,16 +151,16 @@ def play_final_talk_s4(screen, clock):
     if trust >= 1:
         dialogue_lines = [
             [("Mila gasps, her eyes returning into normal.", WHITE)],
-            [('"I... I remember now."', PURPLE)],
-            [('"You are right. I am still human..."', PURPLE)],
+            [("MILA: I... I remember now.", PURPLE)],
+            [("MILA: You're right. I'm still human...", PURPLE)],
             [("Her voice trembles as she collapses onto the floor, human once more.", WHITE)]]
 
     elif trust < 1:
         dialogue_lines = [
             [("Her eyes flicker for a split second...", WHITE)],
-            [("..before sharpening again, full of rage.", WHITE)],
-            [('"I cannot... fight it..."', PURPLE)],
-            [("She growls and lunges at you, her claws tearing through the air.", WHITE)]]
+            [("..before sharpening again, full of rage.", RED)],
+            [("MILA: I can't... fight it...", PURPLE)],
+            [("She growls and lunges at you, her claws tearing through the air.", RED)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -187,7 +186,7 @@ def play_final_talk_s4(screen, clock):
                         if trust >= 1:
                             transition_good_ending_s4(screen, clock, "talk")
                         elif trust < 1:
-                            play_ending(screen, clock, "talk", "bad")
+                            transition_bad_ending_s4(screen, clock, "talk")
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -225,14 +224,14 @@ def play_final_fight_s4(screen, clock):
     if has_knife:
         dialogue_lines = [
             [("You reach to your ankle and take the knife out, holding it in front of yourself.", WHITE)],
-            [("With all your energy, you knock Mila to the ground.", WHITE)],
+            [("With all of your strength, you knock Mila to the ground.", WHITE)],
             [("She lies there panting, and her eyes slowly fade back to normal.", WHITE)],
-            [('"It is... over..."', PURPLE)]]
+            [("MILA: It's... over...", PURPLE)]]
 
     elif not has_knife:
         dialogue_lines = [
-            [("However, you misjudge her next move, and her claws rip into you.", WHITE)],
-            [("Pain shoots through your body as you collapse to the ground.", WHITE)],
+            [("However, you misjudge her next move, and her claws rip into you.", RED)],
+            [("Pain shoots through your body as you collapse to the ground.", RED)],
             [("Her snarls are the last thing you hear before you fade into darkness...", WHITE)]]
 
     current_line = 0
@@ -257,9 +256,9 @@ def play_final_fight_s4(screen, clock):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
                         if has_knife:
-                            play_ending(screen, clock, "fight", "good")
+                            transition_good_ending_s4(screen, clock, "fight")
                         elif not has_knife:
-                            play_ending(screen, clock, "fight", "bad")
+                            transition_bad_ending_s4(screen, clock, "fight")
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -312,5 +311,23 @@ def transition_good_ending_s4(screen, clock, choice):
 
         pygame.display.flip()
 
-def bad_ending_effect():
-    pass
+def transition_bad_ending_s4(screen, clock, choice):
+    fade_alpha = 0
+
+    running = True
+    while running:
+        clock.tick(60)
+
+        if fade_alpha < 50:
+            fade_surface = pygame.Surface((WIDTH, HEIGHT))
+            fade_surface.fill(BLACK)
+            fade_surface.set_alpha(fade_alpha)
+            screen.blit(fade_surface, (0, 0))
+            fade_alpha += 1
+        elif fade_alpha >= 50:
+            if choice == "talk":
+                play_ending(screen, clock, "talk", "bad")
+            elif choice == "fight":
+                play_ending(screen, clock, "fight", "bad")
+
+        pygame.display.flip()

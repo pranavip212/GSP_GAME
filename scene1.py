@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 from game_states import GameState
-from fightscene import play_fight
+from fight_game import play_fight
 from ui import DialogueBox
 
 
