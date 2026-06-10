@@ -4,7 +4,7 @@ from titlePage import title_screen
 from scene1 import play_intro
 from fight_game import play_fight
 from at_School_s2 import at_School
-from scene_3 import play_intro_s3
+from scene_3 import play_intro
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -29,7 +29,7 @@ while running:
         current_state = at_School(screen, clock)
 
     elif current_state == GameState.SCENE3:
-        current_state = play_intro_s3(screen, clock)
+        current_state = play_intro(screen, clock)
 
     elif current_state == GameState.QUIT:
         running = False

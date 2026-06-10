@@ -3,7 +3,7 @@ from ui import DialogueBox
 from images import *
 
 
-def play_intro_s3(screen, clock):
+def play_intro(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
@@ -36,10 +36,10 @@ def play_intro_s3(screen, clock):
             # Choice Event
             if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
                 if follow_button.collidepoint(event.pos):
-                    play_transition_s3(screen, clock, "follow_mila")
+                    play_transition(screen, clock, "follow_mila")
                     return
                 elif run_button.collidepoint(event.pos):
-                    play_transition_s3(screen, clock, "run_away")
+                    play_transition(screen, clock, "run_away")
                     return
 
             # Dialogue Event
@@ -95,7 +95,7 @@ def play_intro_s3(screen, clock):
         pygame.display.flip()
 
 
-def play_transition_s3(screen, clock, choice):
+def play_transition(screen, clock, choice):
     dialogue_lines = []
 
     if choice == "follow_mila":
