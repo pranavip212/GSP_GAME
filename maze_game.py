@@ -1,24 +1,24 @@
-import sys
+import time
 import math
 from ui import DialogueBox
 from images import *
 from scene_4 import play_intro_s4
 
 def play_maze_game(mode):
-    maze_width = 1000
-    maze_height = 700
     player_speed = 4
     mila_speed = 3
-    chase_speed = 3.5
     player_start = (60, 60)
     mila_start = (30, 60)
 
+    maze_width = 1000
+    maze_height = 700
     maze_screen = pygame.display.set_mode((maze_width, maze_height))
+
     clock = pygame.time.Clock()
 
     instruction = [
         [("Sneak past the zombies and get to the exit! Don't alert them by touching the walls!", RED)],
-        [("Run away from Mila and get to the exit! Don't alert the zombies by touching the walls!", RED)]]
+        [("Run and get to the exit! Don't alert the zombies by touching the walls!", RED)]]
     dialogue_box = DialogueBox((10, 600, 720, 120))
 
     if mode == "follow_mode":
@@ -129,21 +129,23 @@ def play_maze_game(mode):
 
             # Run Mode
             if mode == "run_mode":
-                move_towards(mila, player.center, chase_speed)
-                if player.colliderect(mila):
-                    game_over_state = True
+                move_towards(mila, player.center, mila_speed)
+                if time.time() - time.time() > 2:
+
+                    if player.colliderect(mila):
+                        game_over_state = True
 
             # Win Condition
             if player.colliderect(target):
                 screen = pygame.display.set_mode((WIDTH, HEIGHT))
                 play_intro_s4(screen, clock)
 
+        if not game_over_state:
+            dialogue_box.update()
+            dialogue_box.draw(maze_screen)
+
         elif game_over_state:
             game_over_box.update()
             game_over_box.draw(maze_screen)
-
-        else:
-            dialogue_box.update()
-            dialogue_box.draw(maze_screen)
 
         pygame.display.flip()
