@@ -1,3 +1,4 @@
+import random
 from endings import *
 from player_data import *
 from ui import DialogueBox
@@ -160,7 +161,7 @@ def play_final_talk_s4(screen, clock):
             [("Her eyes flicker for a split second...", WHITE)],
             [("..before sharpening again, full of rage.", RED)],
             [("MILA: I can't... fight it...", PURPLE)],
-            [("She growls and lunges at you, her claws tearing through the air.", RED)]]
+            [("She growls and lunges at you, her claws tearing through the air.", DARK_RED)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -212,6 +213,7 @@ def play_final_talk_s4(screen, clock):
 
             if current_line >= 3:
                 screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (230, 610)), (340, 100))
 
         dialogue_box.update()
         dialogue_box.draw(screen)
@@ -232,7 +234,7 @@ def play_final_fight_s4(screen, clock):
         dialogue_lines = [
             [("However, you misjudge her next move, and her claws rip into you.", RED)],
             [("Pain shoots through your body as you collapse to the ground.", RED)],
-            [("Her snarls are the last thing you hear before you fade into darkness...", WHITE)]]
+            [("Her snarls are the last thing you hear before you fade into darkness...", DARK_RED)]]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -262,28 +264,15 @@ def play_final_fight_s4(screen, clock):
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
-        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
+        screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))
 
-        if trust >= 1:
+        if has_knife:
             if current_line >= 1:
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_pensive_dark, True, False), (195, 520)), (400, 120))
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
-
-            if current_line >= 2:
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
-
-            if current_line >= 3:
                 screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
 
-        elif trust < 1:
-            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_tears_dark, True, False), (195, 520)), (400, 120))
-
-            if current_line >= 1:
-                screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))
-
-            if current_line >= 3:
-                screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+        elif not has_knife:
+            screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
+            screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (230, 610)), (340, 100))
 
         dialogue_box.update()
         dialogue_box.draw(screen)
@@ -297,37 +286,74 @@ def transition_good_ending_s4(screen, clock, choice):
     while running:
         clock.tick(60)
 
-        if fade_alpha < 50:
-            fade_surface = pygame.Surface((WIDTH, HEIGHT))
-            fade_surface.fill(BLACK)
-            fade_surface.set_alpha(fade_alpha)
-            screen.blit(fade_surface, (0, 0))
-            fade_alpha += 1
-        elif fade_alpha >= 50:
+        fade_surface = pygame.Surface((WIDTH, HEIGHT))
+        fade_surface.fill(BLACK)
+        fade_surface.set_alpha(fade_alpha)
+        screen.blit(fade_surface, (0, 0))
+
+        fade_alpha += 1
+        if fade_alpha >= 50:
             if choice == "talk":
                 play_ending(screen, clock, "talk", "good")
             elif choice == "fight":
                 play_ending(screen, clock, "fight", "good")
+            running = False
 
         pygame.display.flip()
 
+
 def transition_bad_ending_s4(screen, clock, choice):
+    shake = 0
+    scale = 0.2
+    flash_alpha = 0
     fade_alpha = 0
 
+    phase = "jumpscare"
     running = True
     while running:
         clock.tick(60)
 
-        if fade_alpha < 50:
+        if phase == "jumpscare":
+            scale += 0.1
+
+            shake = min(20, shake + 1)
+            offset_x = random.randint(-shake, shake)
+            offset_y = random.randint(-shake, shake)
+            screen.blit(pygame.transform.flip(maze, True, False), (offset_x, offset_y))
+
+            zombie_hand_width = int(zombie_hand.get_width() * scale)
+            zombie_hand_height = int(zombie_hand.get_height() * scale)
+            zombie_hand_jumpscare = pygame.transform.scale(zombie_hand, (zombie_hand_width, zombie_hand_height))
+
+            rect = zombie_hand_jumpscare.get_rect(center=((WIDTH // 2) + 70, (HEIGHT // 2) - 20))
+            screen.blit(zombie_hand_jumpscare, rect)
+
+            if scale >= 2.5:
+                phase = "flash"
+
+        elif phase == "flash":
+            flash_surface = pygame.Surface((WIDTH, HEIGHT))
+            flash_surface.fill((255,0,0))
+            flash_surface.set_alpha(flash_alpha)
+            screen.blit(flash_surface, (0, 0))
+            flash_alpha += 25
+
+            if flash_alpha >= 255:
+                phase = "fade"
+
+        elif phase == "fade":
             fade_surface = pygame.Surface((WIDTH, HEIGHT))
             fade_surface.fill(BLACK)
             fade_surface.set_alpha(fade_alpha)
             screen.blit(fade_surface, (0, 0))
+
             fade_alpha += 1
-        elif fade_alpha >= 50:
-            if choice == "talk":
-                play_ending(screen, clock, "talk", "bad")
-            elif choice == "fight":
-                play_ending(screen, clock, "fight", "bad")
+
+            if fade_alpha >= 50:
+                if choice == "talk":
+                    play_ending(screen, clock, "talk", "bad")
+                elif choice == "fight":
+                    play_ending(screen, clock, "fight", "bad")
+                running = False
 
         pygame.display.flip()
