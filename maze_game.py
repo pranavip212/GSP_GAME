@@ -8,6 +8,7 @@ def play_maze_game(mode):
     mila_speed = 3
     player_start = (60, 60)
     mila_start = (30, 60)
+    lose_count = 0
 
     maze_width = 1000
     maze_height = 700
@@ -18,13 +19,23 @@ def play_maze_game(mode):
 
     instruction = [
         [("Sneak past the zombies and get to the exit! Don't alert them by touching the walls!", RED)],
-        [("Run and get to the exit! Don't alert the zombies by touching the walls!", RED)]]
+        [("Run and get to the exit! Don't alert the zombies by touching the walls!", RED)],
+        [("Press E to skip.", RED)]]
     dialogue_box = DialogueBox((10, 600, 720, 120))
 
+
+
     if mode == "follow_mode":
-        dialogue_box.set_text(instruction[0])
+        if lose_count >= 3:
+            dialogue_box.set_text(instruction[2])
+        else:
+            dialogue_box.set_text(instruction[0])
     elif mode == "run_mode":
-        dialogue_box.set_text(instruction[1])
+        if lose_count >= 3:
+            dialogue_box.set_text(instruction[2])
+        else:
+            dialogue_box.set_text(instruction[1])
+
 
     game_over_box = DialogueBox((205, 300, 610, 60))
     game_over_box.set_text([["You got caught! Press SPACE to retry!", RED]])
@@ -77,8 +88,13 @@ def play_maze_game(mode):
 
             if event.type == pygame.KEYDOWN:
                 if game_over_state and event.key == pygame.K_SPACE:
+                    lose_count += 1
                     start_ticks = reset_game()
                     game_over_state = False
+
+            if event.type == pygame.K_e:
+                screen = pygame.display.set_mode((WIDTH, HEIGHT))
+                play_intro_s4(screen, clock)
 
         # --- GUI --- #
         maze_screen.blit(maze_ground, (0, 0))

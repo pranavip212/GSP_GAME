@@ -4,6 +4,7 @@ from endings import *
 from player_data import *
 from ui import DialogueBox
 from images import *
+from media import *
 
 
 def play_intro_s4(screen, clock):
@@ -27,6 +28,9 @@ def play_intro_s4(screen, clock):
     show_choice = False
     talk_button = pygame.Rect((40, 310, 340, 60))
     fight_button = pygame.Rect((40, 380, 210, 60))
+
+    scene_4_music.play(-1, fade_ms=4000)
+    scene_4_music.set_volume(0.5)
 
     # --- Main Game Loop --- #
     running = True
@@ -193,6 +197,7 @@ def play_talk_s4(screen, clock):
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
         screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
+        scene_4_music.fadeout(1500)
 
         if player_states.trust >= 1:
             if current_line >= 1:
@@ -264,6 +269,7 @@ def play_fight_s4(screen, clock):
                             transition_bad_ending(screen, clock, "fight")
 
         # --- GUI --- #
+        scene_4_music.fadeout(1500)
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
         screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))
 
@@ -310,6 +316,8 @@ def transition_bad_ending(screen, clock, choice):
     fade_alpha = 0
 
     phase = "jumpscare"
+    kill_sound.play()
+
     running = True
     while running:
         clock.tick(60)

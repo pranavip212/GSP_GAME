@@ -1,4 +1,3 @@
-import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from constants import *

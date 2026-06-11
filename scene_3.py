@@ -2,6 +2,7 @@ import pygame.freetype
 from maze_game import play_maze_game
 from ui import DialogueBox
 from images import *
+from media import *
 
 
 def play_intro_s3(screen, clock):
