@@ -1,6 +1,5 @@
-import pygame
 import random
-from constants import *
+from images import *
 from scene_2 import play_intro_s2
 from game_states import GameState
 
@@ -23,15 +22,7 @@ FIGHT_DURATION = 10
 
 
 def play_fight(screen, clock):
-    print('fight scene started')
-
     shake = 0
-
-    bedroom = pygame.image.load("assets/images/bedroom.png").convert()
-    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
-
-    zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
-    zombie = pygame.transform.scale(zombie, (300, 300))
 
     title_font = pygame.font.SysFont("consolas", 48)
     main_font = pygame.font.SysFont("consolas", 30)
