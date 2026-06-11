@@ -62,10 +62,8 @@ def play_intro_s3(screen, clock):
 
         if current_line >= 3:
             screen.blit(maze, (0, 0))
-            screen.blit(pygame.transform.scale(mila_normal_dark, (195, 520)), (520, 120))
 
         if current_line >= 4:
-            screen.blit(maze, (0, 0))
             screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (250, 640)), (485, 90))
 
         if current_line >= 5:

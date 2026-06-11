@@ -1,4 +1,4 @@
-import player_data
+from player_data import *
 import pygame.freetype
 from game_states import GameState
 from scene_3 import play_intro_s3
@@ -198,7 +198,7 @@ def play_intro_s2(screen, clock):
 
 
 def play_eat_bacon_s2(screen, clock):
-    player_data.trust =+ 4
+    player_states.trust += 4
 
     dialogue_lines = [
         [("You pick up your fork and try the bacon.", WHITE)],
@@ -245,7 +245,7 @@ def play_eat_bacon_s2(screen, clock):
         pygame.display.flip()
 
 def play_refuse_food_s2(screen, clock):
-    player_data.trust -=2
+    player_states.trust -= 2
     dialogue_lines = [
         [("You push the plate away, feeling uneasy", WHITE)],
         [("Mila shrugs and continues eating, but her eyes linger on you for too long…", WHITE)],
@@ -289,8 +289,8 @@ def play_refuse_food_s2(screen, clock):
         pygame.display.flip()
 
 def play_grab_knife_s2(screen, clock):
-    player_data.trust -=5
-    player_data.has_knife = True
+    player_states.trust -= 5
+    player_states.knife = True
 
 
 

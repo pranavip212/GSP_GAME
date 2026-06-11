@@ -1,3 +1,6 @@
+class PlayerData:
+    def __init__(self):
+        self.trust = 0
+        self.knife = False
 
-trust = 0
-has_knife = False
+player_states = PlayerData()
