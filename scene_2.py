@@ -4,6 +4,8 @@ from game_states import GameState
 from scene_3 import play_intro_s3
 from images import *
 from ui import DialogueBox
+pygame.init()
+pygame.mixer.init()
 
 
 def play_intro_s2(screen, clock):
@@ -47,7 +49,6 @@ def play_intro_s2(screen, clock):
         [("What will you do?", DARK_RED)]
 
     ]
-
 
     current_line = 0
 

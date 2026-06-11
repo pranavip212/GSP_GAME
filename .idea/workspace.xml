@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e0e93b4-8183-49ff-8f00-ee6dc3bdf49c" name="Changes" comment="added colors to dialouge boxes, IMPORTANT : SOME ERRORS WILL BE RAISED WHEN RUN, THE TEXT THING NEEDS TO BE FULLY INTERGRATED, RAN OUT OF TIME">
-      <change afterPath="$PROJECT_DIR$/assets/images/knife_in_sink.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/at_School_s2.py" beforeDir="false" afterPath="$PROJECT_DIR$/at_School_s2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images.py" beforeDir="false" afterPath="$PROJECT_DIR$/images.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/scene_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/title_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/title_page.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +33,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/pranavip212/GSP_GAME.git",
-    "accountId": "46422d84-874d-45e7-9f80-88f0dd9030f2"
+    "accountId": "64b1a2d1-2b0a-4590-b9a2-34ffd2afca82"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -52,6 +51,7 @@
     "Python.scene_3.executor": "Run",
     "Python.strongJesse.executor": "Run",
     "Python.titlePage.executor": "Run",
+    "Python.title_page.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -74,7 +74,7 @@
       <recent name="C:\Users\pranavip64\GSP_GAME" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.titlePage">
+  <component name="RunManager" selected="Python.title_page">
     <configuration name="chase_s3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PythonProject" />
       <option name="ENV_FILES" value="" />
@@ -141,8 +141,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="title_page" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/title_page.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.title_page" />
         <item itemvalue="Python.titlePage" />
         <item itemvalue="Python.scene_3" />
         <item itemvalue="Python.chase_s3" />

@@ -6,6 +6,8 @@ from media import *
 from scene_1 import play_intro_s1
 from game_states import GameState
 pygame.init()
+pygame.mixer.init()
+
 
 
 # ---------------- TEXT FUNCTION ----------------
@@ -152,28 +154,15 @@ def title_screen(screen, clock):
         pygame.draw.circle(screen, DARK_RED, (400, 200), 250)
 
         # title
-        title_font.render_to(
-            screen,
-            (190, 120),
-            "LAST BELL",
-            RED
-        )
+        title_font.render_to(screen, (190, 120),"LAST BELL", RED)
 
         # subtitle
-        subtitle_font.render_to(
-            screen,
-            (240, 210),
-            "A Zombie Visual Horror Game",
-            WHITE
-        )
+        subtitle_font.render_to(screen, (240, 210), "A Zombie Visual Horror Game", WHITE)
 
         # buttons
         for button in buttons:
 
-            ui_action = button.update(
-                pygame.mouse.get_pos(),
-                mouse_up
-            )
+            ui_action = button.update(pygame.mouse.get_pos(),mouse_up)
 
             if ui_action is not None:
                 return ui_action
@@ -212,17 +201,9 @@ def play_level(screen, clock):
 
         screen.fill((15, 15, 15))
 
-        font.render_to(
-            screen,
-            (180, 250),
-            "GAME STARTS HERE",
-            WHITE
-        )
+        font.render_to(screen, (180, 250), "GAME STARTS HERE", WHITE)
 
-        ui_action = return_btn.update(
-            pygame.mouse.get_pos(),
-            mouse_up
-        )
+        ui_action = return_btn.update(pygame.mouse.get_pos(), mouse_up)
 
         if ui_action is not None:
             return ui_action
