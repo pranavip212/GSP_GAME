@@ -15,7 +15,7 @@ def play_intro(screen, clock):
 
         [("Distracted, you run into a tall figure...", WHITE)],
 
-        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes.", WHITE)],
+        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes", WHITE)],
 
         [("MILA: O.M.G! What are you doing here?", PURPLE)],
 
@@ -93,7 +93,7 @@ def play_intro(screen, clock):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                            show_choices = True
+                        show_choices = True
 
         screen.blit(day_hallway, (0, 0))
 
@@ -232,7 +232,7 @@ def play_eat_bacon (screen, clock):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                            return GameState.GAME
+                        play_intro(screen, clock)
 
         screen.blit(plate_of_bacon, (0, 0))
         if current_line >= 3:
@@ -247,10 +247,10 @@ def play_eat_bacon (screen, clock):
 def play_refuse_food (screen, clock):
     player_data.trust -=2
     dialogue_lines = [
-        [("You push the plate away, feeling uneasy.", WHITE)],
-        [("Mila shrugs and continues eating, but her eyes linger on you for too long.", WHITE)],
+        [("You push the plate away, feeling uneasy", WHITE)],
+        [("Mila shrugs and continues eating, but her eyes linger on you for too long…", WHITE)],
         [("[-2 TRUST]", DARK_RED)],
-        [("Suddenly, the tension is broken by a scream in the hallway.", WHITE)],
+        [("Suddenly, the tension is broken by a scream in the hallway", WHITE)],
     ]
 
     current_line = 0
@@ -276,7 +276,7 @@ def play_refuse_food (screen, clock):
                         if current_line < len(dialogue_lines):
                             dialogue_box.set_text(dialogue_lines[current_line])
                         else:
-                            return GameState.GAME
+                            play_intro(screen, clock)
 
         screen.blit(kitchen, (0, 0))
         if current_line >= 1:
@@ -308,7 +308,7 @@ def play_grab_knife(screen, clock):
 
     [("With a racing heart, you sit back down.", WHITE)],
 
-    [("However, Mila notices the open knife drawer...", WHITE)],
+    [("However, Mila notices the missing knife...", WHITE)],
 
     [("MILA: Uh hey... what are you doing there?", PURPLE)],
 
@@ -340,7 +340,6 @@ def play_grab_knife(screen, clock):
                 return GameState.QUIT
 
             if event.type == pygame.KEYDOWN:
-
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         current_line += 1
@@ -349,9 +348,24 @@ def play_grab_knife(screen, clock):
                             dialogue_box.set_text(dialogue_lines[current_line])
 
                         else:
-                            return GameState.GAME
+                            play_intro(screen, clock)
 
-        screen.fill(BLACK)
+        screen.blit(kitchen, (0, 0))
+        if current_line >= 1:
+            screen.blit(mila_normal_lit, (450, 100))
+
+        if current_line >= 2:
+            screen.blit(mila_happy_lit, (450, 100))
+
+        if current_line >= 4:
+            screen.blit(knife_in_sink, (0,0))
+
+        if current_line >= 6:
+            screen.blit(kitchen, (0,0))
+            screen.blit(mila_happy_lit, (450, 100))
+
+        if current_line >= 7:
+            screen.blit(mila_pensive_lit, (450, 100))
 
         dialogue_box.update()
         dialogue_box.draw(screen)

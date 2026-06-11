@@ -73,3 +73,5 @@ mila_silhouette = pygame.transform.scale(mila_silhouette, mila_size)
 # source: https://es.pinterest.com/pin/849702654685205639/
 kitchen = pygame.image.load("assets/images/kitchen.png").convert_alpha()
 kitchen = pygame.transform.scale(kitchen, (WIDTH, HEIGHT))
+knife_in_sink = pygame.image.load("assets/images/knife_in_sink.png").convert_alpha()
+knife_in_sink = pygame.transform.scale(knife_in_sink, (WIDTH, HEIGHT))

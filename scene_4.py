@@ -6,7 +6,7 @@ from ui import DialogueBox
 from images import *
 
 
-def play_intro_s4(screen, clock):
+def play_intro(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
@@ -40,10 +40,10 @@ def play_intro_s4(screen, clock):
             # Choice Event
             if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
                 if talk_button.collidepoint(event.pos):
-                    play_final_transition_s4(screen, clock, "talk")
+                    play_transition(screen, clock, "talk")
                     return
                 elif fight_button.collidepoint(event.pos):
-                    play_final_transition_s4(screen, clock, "fight")
+                    play_transition(screen, clock, "fight")
                     return
 
             # Dialogue Event
@@ -93,7 +93,7 @@ def play_intro_s4(screen, clock):
         pygame.display.flip()
 
 
-def play_final_transition_s4(screen, clock, choice):
+def play_transition(screen, clock, choice):
     dialogue_lines = []
 
     if choice == "talk":
@@ -134,9 +134,9 @@ def play_final_transition_s4(screen, clock, choice):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
                         if choice == "talk":
-                            play_final_talk_s4(screen, clock)
+                            play_talk(screen, clock)
                         elif choice == "fight":
-                            play_final_fight_s4(screen, clock)
+                            play_fight(screen, clock)
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -147,7 +147,7 @@ def play_final_transition_s4(screen, clock, choice):
         pygame.display.flip()
 
 
-def play_final_talk_s4(screen, clock):
+def play_talk(screen, clock):
     dialogue_lines = []
 
     if trust >= 1:
@@ -186,9 +186,9 @@ def play_final_talk_s4(screen, clock):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
                         if trust >= 1:
-                            transition_good_ending_s4(screen, clock, "talk")
+                            transition_good_ending(screen, clock, "talk")
                         elif trust < 1:
-                            transition_bad_ending_s4(screen, clock, "talk")
+                            transition_bad_ending(screen, clock, "talk")
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -221,7 +221,7 @@ def play_final_talk_s4(screen, clock):
         pygame.display.flip()
 
 
-def play_final_fight_s4(screen, clock):
+def play_fight(screen, clock):
     dialogue_lines = []
 
     if has_knife:
@@ -259,9 +259,9 @@ def play_final_fight_s4(screen, clock):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
                         if has_knife:
-                            transition_good_ending_s4(screen, clock, "fight")
+                            transition_good_ending(screen, clock, "fight")
                         elif not has_knife:
-                            transition_bad_ending_s4(screen, clock, "fight")
+                            transition_bad_ending(screen, clock, "fight")
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -280,7 +280,7 @@ def play_final_fight_s4(screen, clock):
         pygame.display.flip()
 
 
-def transition_good_ending_s4(screen, clock, choice):
+def transition_good_ending(screen, clock, choice):
     fade_alpha = 0
 
     running = True
@@ -303,7 +303,7 @@ def transition_good_ending_s4(screen, clock, choice):
         pygame.display.flip()
 
 
-def transition_bad_ending_s4(screen, clock, choice):
+def transition_bad_ending(screen, clock, choice):
     shake = 0
     scale = 0.2
     flash_alpha = 0
