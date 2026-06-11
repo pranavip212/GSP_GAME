@@ -23,7 +23,6 @@ def play_intro(screen, clock):
 
         [("MILA: OH RIGHT!!", PURPLE)],
 
-
         [("Mila's cold hand grabs yours and pulls you into the kitchen, locking the door.", WHITE)],
 
         [("After catching your breath, Mila insists on making you breakfast.", WHITE)],
@@ -358,10 +357,10 @@ def play_grab_knife(screen, clock):
             screen.blit(mila_happy_lit, (450, 100))
 
         if current_line >= 4:
-            screen.blit(knife_in_sink, (0,0))
+            screen.blit(knife_in_sink, (0, 0))
 
         if current_line >= 6:
-            screen.blit(kitchen, (0,0))
+            screen.blit(kitchen, (0, 0))
             screen.blit(mila_happy_lit, (450, 100))
 
         if current_line >= 7:
