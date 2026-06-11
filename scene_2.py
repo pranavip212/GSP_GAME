@@ -16,7 +16,7 @@ def play_intro_s2(screen, clock):
 
         [("Distracted, you run into a tall figure...", WHITE)],
 
-        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes", WHITE)],
+        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes.", WHITE)],
 
         [("MILA: O.M.G! What are you doing here?", PURPLE)],
 

@@ -1,4 +1,3 @@
-import time
 import math
 from ui import DialogueBox
 from images import *
@@ -132,9 +131,9 @@ def play_maze_game(mode):
             # Run Mode
             if mode == "run_mode":
                 move_towards(mila, player.center, mila_speed)
-                elapsed_milliseconds = pygame.time.get_ticks() - start_ticks
+                elapsed_ms = pygame.time.get_ticks() - start_ticks
 
-                if elapsed_milliseconds > 2000 and player.colliderect(mila):
+                if elapsed_ms > 2000 and player.colliderect(mila):
                     game_over_state = True
 
             # Win Condition

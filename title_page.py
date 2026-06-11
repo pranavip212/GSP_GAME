@@ -2,6 +2,7 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from constants import *
+from media import *
 from scene_1 import play_intro_s1
 from game_states import GameState
 pygame.init()
@@ -92,6 +93,7 @@ def main():
             game_state = title_screen(screen, clock)
 
         elif game_state == GameState.INTRO:
+            title_page_music.fadeout(1500)
             game_state = play_intro_s1(screen, clock)
 
         elif game_state == GameState.GAME:
@@ -104,6 +106,8 @@ def main():
 
 # intro screen
 def title_screen(screen, clock):
+    title_page_music.play(-1, fade_ms=4000)
+    title_page_music.set_volume(0.5)
 
     start_btn = UIElement(
         center_position=(WIDTH // 2, 380),

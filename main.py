@@ -1,6 +1,6 @@
 import pygame
 from game_states import GameState
-from titlePage import title_screen
+from title_page import title_screen
 
 from fight_game import play_fight
 from scene_1 import play_intro_s1

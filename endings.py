@@ -1,6 +1,6 @@
-import pygame
 import pygame.freetype
 from constants import *
+from media import *
 
 def play_ending(screen, clock, choice, outcome):
     main_font = pygame.freetype.SysFont("consolas", 70, bold=True)
@@ -9,6 +9,13 @@ def play_ending(screen, clock, choice, outcome):
 
     fade_alpha = 255
     quit_button = pygame.Rect((344, 354, 90, 50))
+
+    if outcome == "good":
+        good_ending.play(-1, fade_ms=4000)
+        good_ending.set_volume(0.5)
+    elif outcome == "bad":
+        bad_ending.play(-1, fade_ms=4000)
+        bad_ending.set_volume(0.5)
 
     # --- Main Game Loop --- #
     running = True
