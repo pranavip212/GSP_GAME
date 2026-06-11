@@ -2,7 +2,7 @@ import time
 import math
 from ui import DialogueBox
 from images import *
-from scene_4 import play_intro
+from scene_4 import play_intro_s4
 
 def play_maze_game(mode):
     player_speed = 4
@@ -137,7 +137,7 @@ def play_maze_game(mode):
             # Win Condition
             if player.colliderect(target):
                 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-                play_intro(screen, clock)
+                play_intro_s4(screen, clock)
 
         if not game_over_state:
             dialogue_box.update()

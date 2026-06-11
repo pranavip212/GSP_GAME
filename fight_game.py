@@ -1,7 +1,7 @@
 import pygame
 import random
 from constants import *
-from scene_2 import play_intro
+from scene_2 import play_intro_s2
 from game_states import GameState
 
 # =====================================
@@ -96,7 +96,7 @@ def play_fight(screen, clock):
                             bar_value = BAR_MAX
 
                 elif current_state == "win":
-                        play_intro(screen, clock)
+                        play_intro_s2(screen, clock)
 
                 elif current_state == "lose":
                         return GameState.INTRO

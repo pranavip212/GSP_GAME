@@ -6,7 +6,7 @@ from ui import DialogueBox
 from images import *
 
 
-def play_intro(screen, clock):
+def play_intro_s4(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
@@ -40,10 +40,10 @@ def play_intro(screen, clock):
             # Choice Event
             if show_choice and event.type == pygame.MOUSEBUTTONDOWN:
                 if talk_button.collidepoint(event.pos):
-                    play_transition(screen, clock, "talk")
+                    play_transition_s4(screen, clock, "talk")
                     return
                 elif fight_button.collidepoint(event.pos):
-                    play_transition(screen, clock, "fight")
+                    play_transition_s4(screen, clock, "fight")
                     return
 
             # Dialogue Event
@@ -93,7 +93,7 @@ def play_intro(screen, clock):
         pygame.display.flip()
 
 
-def play_transition(screen, clock, choice):
+def play_transition_s4(screen, clock, choice):
     dialogue_lines = []
 
     if choice == "talk":
@@ -134,9 +134,9 @@ def play_transition(screen, clock, choice):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
                         if choice == "talk":
-                            play_talk(screen, clock)
+                            play_talk_s4(screen, clock)
                         elif choice == "fight":
-                            play_fight(screen, clock)
+                            play_fight_s4(screen, clock)
 
         # --- GUI --- #
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
@@ -147,7 +147,7 @@ def play_transition(screen, clock, choice):
         pygame.display.flip()
 
 
-def play_talk(screen, clock):
+def play_talk_s4(screen, clock):
     dialogue_lines = []
 
     if trust >= 1:
@@ -221,7 +221,7 @@ def play_talk(screen, clock):
         pygame.display.flip()
 
 
-def play_fight(screen, clock):
+def play_fight_s4(screen, clock):
     dialogue_lines = []
 
     if has_knife:

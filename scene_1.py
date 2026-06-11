@@ -4,7 +4,7 @@ from fight_game import play_fight
 from ui import DialogueBox
 
 
-def play_intro(screen, clock):
+def play_intro_s1(screen, clock):
 
     # fade
     fade_alpha = 255

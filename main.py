@@ -1,9 +1,10 @@
 import pygame
 from game_states import GameState
 from titlePage import title_screen
-from scene_1 import play_intro
+
 from fight_game import play_fight
-from scene_2 import play_intro
+from scene_1 import play_intro_s1
+from scene_2 import play_intro_s2
 from scene_3 import play_intro_s3
 
 pygame.init()
@@ -20,13 +21,13 @@ while running:
         current_state = title_screen(screen, clock)
 
     elif current_state == GameState.INTRO:
-        current_state = play_intro(screen, clock)
+        current_state = play_intro_s1(screen, clock)
 
     elif current_state == GameState.FIGHT:
         current_state = play_fight(screen, clock)
 
     elif current_state == GameState.GAME:
-        current_state = play_intro(screen, clock)
+        current_state = play_intro_s2(screen, clock)
 
     elif current_state == GameState.SCENE3:
         current_state = play_intro_s3(screen, clock)

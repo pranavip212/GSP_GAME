@@ -1,11 +1,12 @@
 import player_data
 import pygame.freetype
 from game_states import GameState
+from scene_3 import play_intro_s3
 from images import *
 from ui import DialogueBox
 
 
-def play_intro(screen, clock):
+def play_intro_s2(screen, clock):
 
     fade_alpha = 255
 
@@ -76,13 +77,13 @@ def play_intro(screen, clock):
             if show_choices and event.type == pygame.MOUSEBUTTONDOWN:
 
                 if eat_button.collidepoint(event.pos):
-                    return play_eat_bacon(screen, clock)
+                    return play_eat_bacon_s2(screen, clock)
 
                 elif refuse_button.collidepoint(event.pos):
-                    return play_refuse_food(screen, clock)
+                    return play_refuse_food_s2(screen, clock)
 
                 elif knife_button.collidepoint(event.pos):
-                    return play_grab_knife(screen, clock)
+                    return play_grab_knife_s2(screen, clock)
 
             # dialogue
             if event.type == pygame.KEYDOWN:
@@ -196,7 +197,7 @@ def play_intro(screen, clock):
 
 
 
-def play_eat_bacon (screen, clock):
+def play_eat_bacon_s2(screen, clock):
     player_data.trust =+ 4
 
     dialogue_lines = [
@@ -231,7 +232,7 @@ def play_eat_bacon (screen, clock):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        play_intro(screen, clock)
+                        play_intro_s3(screen, clock)
 
         screen.blit(plate_of_bacon, (0, 0))
         if current_line >= 3:
@@ -243,7 +244,7 @@ def play_eat_bacon (screen, clock):
         dialogue_box.draw(screen)
         pygame.display.flip()
 
-def play_refuse_food (screen, clock):
+def play_refuse_food_s2(screen, clock):
     player_data.trust -=2
     dialogue_lines = [
         [("You push the plate away, feeling uneasy", WHITE)],
@@ -275,7 +276,7 @@ def play_refuse_food (screen, clock):
                         if current_line < len(dialogue_lines):
                             dialogue_box.set_text(dialogue_lines[current_line])
                         else:
-                            play_intro(screen, clock)
+                            play_intro_s3(screen, clock)
 
         screen.blit(kitchen, (0, 0))
         if current_line >= 1:
@@ -287,7 +288,7 @@ def play_refuse_food (screen, clock):
         dialogue_box.draw(screen)
         pygame.display.flip()
 
-def play_grab_knife(screen, clock):
+def play_grab_knife_s2(screen, clock):
     player_data.trust -=5
     player_data.has_knife = True
 
@@ -347,7 +348,7 @@ def play_grab_knife(screen, clock):
                             dialogue_box.set_text(dialogue_lines[current_line])
 
                         else:
-                            play_intro(screen, clock)
+                            play_intro_s3(screen, clock)
 
         screen.blit(kitchen, (0, 0))
         if current_line >= 1:

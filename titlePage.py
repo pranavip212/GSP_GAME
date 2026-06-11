@@ -2,7 +2,7 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from constants import *
-from scene_1 import play_intro
+from scene_1 import play_intro_s1
 from game_states import GameState
 pygame.init()
 
@@ -92,7 +92,7 @@ def main():
             game_state = title_screen(screen, clock)
 
         elif game_state == GameState.INTRO:
-            game_state = play_intro(screen, clock)
+            game_state = play_intro_s1(screen, clock)
 
         elif game_state == GameState.GAME:
             game_state = play_level(screen, clock)
