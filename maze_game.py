@@ -26,15 +26,9 @@ def play_maze_game(mode):
 
 
     if mode == "follow_mode":
-        if lose_count >= 3:
-            dialogue_box.set_text(instruction[2])
-        else:
-            dialogue_box.set_text(instruction[0])
+        dialogue_box.set_text(instruction[0])
     elif mode == "run_mode":
-        if lose_count >= 3:
-            dialogue_box.set_text(instruction[2])
-        else:
-            dialogue_box.set_text(instruction[1])
+        dialogue_box.set_text(instruction[1])
 
 
     game_over_box = DialogueBox((205, 300, 610, 60))
@@ -89,12 +83,17 @@ def play_maze_game(mode):
             if event.type == pygame.KEYDOWN:
                 if game_over_state and event.key == pygame.K_SPACE:
                     lose_count += 1
+
+                    if lose_count >= 3:
+                        dialogue_box.set_text(instruction[2])
+
                     start_ticks = reset_game()
                     game_over_state = False
 
-            if event.type == pygame.K_e:
-                screen = pygame.display.set_mode((WIDTH, HEIGHT))
-                play_intro_s4(screen, clock)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_e and lose_count >= 3:
+                    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+                    play_intro_s4(screen, clock)
 
         # --- GUI --- #
         maze_screen.blit(maze_ground, (0, 0))
