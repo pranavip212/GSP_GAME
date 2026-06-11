@@ -1,8 +1,7 @@
 import pygame
 import random
-import time
 from constants import *
-from at_School_s2 import at_School
+from scene_2 import play_intro
 from game_states import GameState
 
 # =====================================
@@ -97,7 +96,7 @@ def play_fight(screen, clock):
                             bar_value = BAR_MAX
 
                 elif current_state == "win":
-                        at_School(screen, clock)
+                        play_intro(screen, clock)
 
                 elif current_state == "lose":
                         return GameState.INTRO
@@ -114,7 +113,7 @@ def play_fight(screen, clock):
             if bar_value <= 0:
                 bar_value = 0
                 current_state = "lose"
-                dialogue_text = "THE ZOMBIE OVERPOWERED YOU...PRESS SPACE"
+                dialogue_text = "YOU LOST...PRESS SPACE TO RETRY"
 
             if timer <= 0:
                 timer = 0
@@ -185,8 +184,8 @@ def play_fight(screen, clock):
 
         # DIALOGUE
 
-        pygame.draw.rect(screen, BLACK, (50, 390, 600, 80))
-        pygame.draw.rect(screen, WHITE, (50, 390, 600, 80), 3)
+        pygame.draw.rect(screen, BLACK, (50, 390, 700, 80))
+        pygame.draw.rect(screen, WHITE, (50, 390, 700, 80), 3)
 
         text_surface = main_font.render(dialogue_text, True, WHITE)
         screen.blit(text_surface, (70, 420))

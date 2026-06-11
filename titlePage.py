@@ -1,9 +1,8 @@
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-from enum import Enum
 from constants import *
-from scene1 import play_intro
+from scene_1 import play_intro
 from game_states import GameState
 pygame.init()
 

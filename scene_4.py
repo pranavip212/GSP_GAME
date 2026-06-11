@@ -1,4 +1,5 @@
 import random
+import pygame.freetype
 from endings import *
 from player_data import *
 from ui import DialogueBox

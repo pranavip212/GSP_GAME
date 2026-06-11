@@ -70,7 +70,6 @@ mila_tears_dark = pygame.transform.scale(mila_tears_dark, mila_size)
 mila_silhouette = pygame.image.load("assets/images/mila_silhouette.png").convert_alpha()
 mila_silhouette = pygame.transform.scale(mila_silhouette, mila_size)
 
-#Kitchen
-#Source: https://es.pinterest.com/pin/849702654685205639/
+# source: https://es.pinterest.com/pin/849702654685205639/
 kitchen = pygame.image.load("assets/images/kitchen.png").convert_alpha()
 kitchen = pygame.transform.scale(kitchen, (WIDTH, HEIGHT))

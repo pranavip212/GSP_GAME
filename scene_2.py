@@ -1,49 +1,42 @@
-import pygame
 import player_data
-from constants import *
+import pygame.freetype
 from game_states import GameState
-from images import day_hallway, breakfast, mila_normal_lit, mila_pensive_lit, plate_of_bacon, kitchen, mila_happy_lit
+from images import *
 from ui import DialogueBox
 
 
-
-def at_School(screen, clock):
-    # images
-    #
-    # mila_standing = pygame.image.load("assets/images/mila_normal_lit.png").convert_alpha()
-    # mila_standing = pygame.transform.scale(mila_standing, (200, 350))
+def play_intro(screen, clock):
 
     fade_alpha = 255
 
     dialogue_lines = [
 
-        [("Running into the corridor, you look around at "
-          "the school crawling with undead in uniforms", WHITE)],
+        [("Running into the corridor, the school is crawling with the undead in uniforms.", WHITE)],
 
         [("Distracted, you run into a tall figure...", WHITE)],
 
-        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes", WHITE)],
+        [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes.", WHITE)],
 
         [("MILA: O.M.G! What are you doing here?", PURPLE)],
 
-        [('YOU:  "RUNNING? HELLO? ZOMBIES???', WHITE)],
+        [("YOU: RUNNING? HELLO? ZOMBIES???", WHITE)],
 
-        [('MILA: OH RIGHT!!', PURPLE)],
+        [("MILA: OH RIGHT!!", PURPLE)],
 
 
-        [("Mila's cold hand grabs yours and you "
-          "run into the kitchen, locking the door.", WHITE)],
+        [("Mila's cold hand grabs yours and pulls you into the kitchen, locking the door.", WHITE)],
 
-        [("After catching your breath, you follow Mila to the stove, where she insists on making breakfast.", WHITE)],
+        [("After catching your breath, Mila insists on making you breakfast.", WHITE)],
 
-        [("You and Mila sat together in history class, and are trauma bonded after surviving that class.", WHITE)],
+        [("You and Mila survived history class together and have been trauma-bonded ever since.", WHITE)],
 
-        [(
-         "Naturally, she is your first and only friend at this new school even if she seems a little strange…", WHITE)],
+        [("Naturally, she is your first and only friend at this new school...", WHITE)],
+
+        [("...even if she seems a little strange...", WHITE)],
 
         [("Mila interrupts your thoughts and slides a plate in front of you.", WHITE)],
 
-        [("The scrambled eggs look fine, but the bacon… it's practically raw.", WHITE)],
+        [("The scrambled eggs look fine, but the bacon... it's practically raw.", WHITE)],
 
         [('MILA: You like it crispy, right?', RED)],
 
@@ -66,9 +59,9 @@ def at_School(screen, clock):
 
     show_choices = False
 
-    eat_button = pygame.Rect((40, 280, 250, 60))
-    refuse_button = pygame.Rect((40, 350, 250, 60))
-    knife_button = pygame.Rect((40, 420, 250, 60))
+    eat_button = pygame.Rect((40, 240, 250, 60))
+    refuse_button = pygame.Rect((40, 310, 250, 60))
+    knife_button = pygame.Rect((40, 380, 250, 60))
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     #choice loop
@@ -92,23 +85,14 @@ def at_School(screen, clock):
                 elif knife_button.collidepoint(event.pos):
                     return play_grab_knife(screen, clock)
 
-            #dialouge
-
+            # dialogue
             if event.type == pygame.KEYDOWN:
-
                 if event.key == pygame.K_SPACE and not show_choices:
+                    current_line += 1
 
-                    if not dialogue_box.finished:
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments)
-
+                    if current_line < len(dialogue_lines):
+                        dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        current_line += 1
-                        if current_line < len(dialogue_lines):
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line])
-
-                        else:
                             show_choices = True
 
         screen.blit(day_hallway, (0, 0))
@@ -119,7 +103,7 @@ def at_School(screen, clock):
         if current_line >= 8:
             screen.blit(breakfast,(0, 0))
 
-        if current_line >=11:
+        if current_line >=12:
             screen.blit(plate_of_bacon, (0,0))
 
         overlay = pygame.Surface((WIDTH, HEIGHT))
@@ -186,21 +170,21 @@ def at_School(screen, clock):
 
             font.render_to(
                 screen,
-                (60, 300),
+                (61, 260),
                 "Eat Bacon",
                 eat_color
             )
 
             font.render_to(
                 screen,
-                (60, 370),
+                (61, 330),
                 "Refuse Food",
                 refuse_color
             )
 
             font.render_to(
                 screen,
-                (60, 440),
+                (61, 400),
                 "Grab Knife",
                 knife_color
             )
@@ -218,11 +202,11 @@ def play_eat_bacon (screen, clock):
 
     dialogue_lines = [
         [("You pick up your fork and try the bacon.", WHITE)],
-        [("You feel your stomach churn", WHITE)],
-        [("You feel stronger after eating, even if it is nasty", WHITE)],
-        [("It's cold, slimy, and makes your stomach churn. but Mila nods approvingly", WHITE)],
+        [("You feel your stomach churn...", WHITE)],
+        [("You feel stronger after eating, though, even if it's nasty.", WHITE)],
+        [("It's cold and slimy, but Mila nods approvingly.", WHITE)],
         [("You've gained her trust...", WHITE)],
-        [("Suddenly, you are interrupted by a scream in the hallway", WHITE)]
+        [("Suddenly, you are interrupted by a scream in the hallway.", WHITE)]
     ]
 
     current_line = 0
@@ -242,20 +226,12 @@ def play_eat_bacon (screen, clock):
                 return GameState.QUIT
 
             if event.type == pygame.KEYDOWN:
-
                 if event.key == pygame.K_SPACE:
+                    current_line += 1
 
-                    if not dialogue_box.finished:
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments)
-
+                    if current_line < len(dialogue_lines):
+                        dialogue_box.set_text(dialogue_lines[current_line])
                     else:
-                        current_line += 1
-                        if current_line < len(dialogue_lines):
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line])
-
-                        else:
                             return GameState.GAME
 
         screen.blit(plate_of_bacon, (0, 0))
@@ -271,10 +247,10 @@ def play_eat_bacon (screen, clock):
 def play_refuse_food (screen, clock):
     player_data.trust -=2
     dialogue_lines = [
-        [("You push the plate away, feeling uneasy", WHITE)],
-        [("Mila shrugs and continues eating, but her eyes linger on you for too long…", WHITE)],
+        [("You push the plate away, feeling uneasy.", WHITE)],
+        [("Mila shrugs and continues eating, but her eyes linger on you for too long.", WHITE)],
         [("[-2 TRUST]", DARK_RED)],
-        [("Suddenly, the tension is broken by a scream in the hallway", WHITE)],
+        [("Suddenly, the tension is broken by a scream in the hallway.", WHITE)],
     ]
 
     current_line = 0
@@ -293,17 +269,12 @@ def play_refuse_food (screen, clock):
 
             if event.type == pygame.KEYDOWN:
 
-                if event.key == pygame.K_SPACE:
-                    if not dialogue_box.finished:
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments)
-
-                    else:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
                         current_line += 1
-                        if current_line < len(dialogue_lines):
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line])
 
+                        if current_line < len(dialogue_lines):
+                            dialogue_box.set_text(dialogue_lines[current_line])
                         else:
                             return GameState.GAME
 
@@ -370,23 +341,12 @@ def play_grab_knife(screen, clock):
 
             if event.type == pygame.KEYDOWN:
 
-                if event.key == pygame.K_SPACE:
-
-                    if not dialogue_box.finished:
-
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments
-                        )
-
-                    else:
-
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
                         current_line += 1
 
                         if current_line < len(dialogue_lines):
-
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line]
-                            )
+                            dialogue_box.set_text(dialogue_lines[current_line])
 
                         else:
                             return GameState.GAME

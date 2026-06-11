@@ -1,4 +1,5 @@
 import pygame
+import pygame.freetype
 from constants import *
 
 def play_ending(screen, clock, choice, outcome):

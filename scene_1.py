@@ -1,16 +1,10 @@
-import pygame
-from constants import *
-from game_states import GameState
+import pygame.freetype
+from images import *
 from fight_game import play_fight
 from ui import DialogueBox
 
 
 def play_intro(screen, clock):
-    # images
-    bedroom = pygame.image.load('assets/images/bedroom.png').convert()
-    bedroom = pygame.transform.scale(bedroom, (WIDTH, HEIGHT))
-    zombie = pygame.image.load("assets/images/zombie_jaw.png").convert_alpha()
-    zombie = pygame.transform.scale(zombie, (300, 300))
 
     # fade
     fade_alpha = 255
@@ -29,7 +23,7 @@ def play_intro(screen, clock):
 
         [("A zombie is hovering inches above you.", WHITE)],
 
-        [("What do you do?", RED)]
+        [("Before you can react...", RED)]
 
     ]
 
@@ -40,11 +34,6 @@ def play_intro(screen, clock):
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
     running = True
-
-    # choice buttons only appear later
-    show_choices = False
-
-    font = pygame.freetype.SysFont("consolas", 32, bold=True)
 
 
     while running:
@@ -65,35 +54,20 @@ def play_intro(screen, clock):
                 # SPACE advances dialogue
                 if event.key == pygame.K_SPACE:
 
-                    # if line still typing, finsh it
-                    if not dialogue_box.finished:
+                    current_line += 1
 
-                        dialogue_box.visible_characters = len(
-                            dialogue_box.text_segments
-                        )
+                    # automatically advance to next line
+                    if current_line < len(dialogue_lines):
+                        dialogue_box.set_text(dialogue_lines[current_line])
 
-                    # otherwise go next line
+                    # otherwise play next scene
                     else:
-
-                        current_line += 1
-
-                        # if dialogue remains
-                        if current_line < len(dialogue_lines):
-
-                            dialogue_box.set_text(
-                                dialogue_lines[current_line]
-                            )
-
-                        # intro finished
-                        else:
-                            # print('switching to fight scene')
-                            # return GameState.FIGHT
-                            play_fight(screen, clock)
+                        play_fight(screen, clock)
 
         # draw bedroom
         screen.blit(bedroom, (0, 0))
 
-        # reveal zombie w dialouge pacing
+        # reveal zombie w dialogue pacing
         if current_line >= 3:
             screen.blit(
                 zombie,

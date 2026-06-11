@@ -1,3 +1,4 @@
+import pygame.freetype
 from maze_game import play_maze_game
 from ui import DialogueBox
 from images import *
