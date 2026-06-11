@@ -15,6 +15,7 @@ def play_maze_game(mode):
     maze_screen = pygame.display.set_mode((maze_width, maze_height))
 
     clock = pygame.time.Clock()
+    start_ticks = pygame.time.get_ticks()
 
     instruction = [
         [("Sneak past the zombies and get to the exit! Don't alert them by touching the walls!", RED)],
@@ -63,6 +64,7 @@ def play_maze_game(mode):
     def reset_game():
         player.topleft = player_start
         mila.topleft = mila_start
+        return pygame.time.get_ticks()
 
     # --- Main Game Loop --- #
     game_over_state = False
@@ -76,7 +78,7 @@ def play_maze_game(mode):
 
             if event.type == pygame.KEYDOWN:
                 if game_over_state and event.key == pygame.K_SPACE:
-                    reset_game()
+                    start_ticks = reset_game()
                     game_over_state = False
 
         # --- GUI --- #
@@ -130,9 +132,10 @@ def play_maze_game(mode):
             # Run Mode
             if mode == "run_mode":
                 move_towards(mila, player.center, mila_speed)
-                if time.time() - time.time() > 2:
-                    if player.colliderect(mila):
-                        game_over_state = True
+                elapsed_milliseconds = pygame.time.get_ticks() - start_ticks
+
+                if elapsed_milliseconds > 2000 and player.colliderect(mila):
+                    game_over_state = True
 
             # Win Condition
             if player.colliderect(target):
