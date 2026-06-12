@@ -1,5 +1,4 @@
 import pygame
-import os
 
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 2048)
@@ -11,11 +10,11 @@ good_ending_music = pygame.mixer.Sound("assets/media/good_ending_music.mp3") # D
 bad_ending_music = pygame.mixer.Sound("assets/media/bad_ending_music.mp3") # Doki Doki Literature Club! OST - Sayo-nara (composed by Dan Salvato)
 
 # source: Freesound
+hit_sound = pygame.mixer.Sound("assets/media/hit_sound.wav") # Whoosh - Long Bamboo stick - OS ST 13 (by Sadiquecat)
 win_sound = pygame.mixer.Sound("assets/media/win_sound.mp3")
-zombie_sound = pygame.mixer.Sound("assets/media/lose_sound.wav") # to be replaced
-running_sound = pygame.mixer.Sound("assets/media/running_sound.wav") # Running away (on solid floor) (created by pfranzen)
-# fork_sound
-# plate_sound
-heartbeat_sound = pygame.mixer.Sound("assets/media/heartbeat_sound.wav") # Heartbeat loop (created by StarNinjas37)
-caught_sound = pygame.mixer.Sound("assets/media/caught_sound.wav") # Startled, gasping for breath 1 (created by AtoMediaDesign)
-kill_sound = pygame.mixer.Sound("assets/media/kill_sound.wav") # Slash1 (created by wesleyextreme_gamer)
+lose_sound = pygame.mixer.Sound("assets/media/lose_sound.wav") # Zombie Hit (by Under7dude)
+running_sound = pygame.mixer.Sound("assets/media/running_sound.wav") # Running away (on solid floor) (by pfranzen)
+plate_sound = pygame.mixer.Sound("assets/media/plate_sound.mp3") # Slide Ceramic Plate on Ceramic Surface (by Erbsland-Music)
+heartbeat_sound = pygame.mixer.Sound("assets/media/heartbeat_sound.wav") # Heartbeat loop (by StarNinjas37)
+caught_sound = pygame.mixer.Sound("assets/media/caught_sound.wav") # Startled, gasping for breath 1 (by AtoMediaDesign)
+kill_sound = pygame.mixer.Sound("assets/media/kill_sound.wav") # Slash1 (by wesleyextreme_gamer)

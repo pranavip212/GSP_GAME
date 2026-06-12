@@ -10,7 +10,6 @@ pygame.mixer.init()
 
 
 def play_intro_s2(screen, clock):
-
     fade_alpha = 255
 
     dialogue_lines = [
@@ -40,7 +39,6 @@ def play_intro_s2(screen, clock):
     dialogue_box.set_text(dialogue_lines[current_line])
 
     # choice buttons only appear later
-
     show_choices = False
 
     eat_button = pygame.Rect((40, 240, 250, 60))
@@ -56,19 +54,15 @@ def play_intro_s2(screen, clock):
         clock.tick(60)
 
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
                 return GameState.QUIT
 
             # Choices
             if show_choices and event.type == pygame.MOUSEBUTTONDOWN:
-
                 if eat_button.collidepoint(event.pos):
                     return play_eat_bacon_s2(screen, clock)
-
                 elif refuse_button.collidepoint(event.pos):
                     return play_refuse_food_s2(screen, clock)
-
                 elif knife_button.collidepoint(event.pos):
                     return play_grab_knife_s2(screen, clock)
 
@@ -76,7 +70,6 @@ def play_intro_s2(screen, clock):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and not show_choices:
                     current_line += 1
-
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
@@ -188,15 +181,17 @@ def play_eat_bacon_s2(screen, clock):
     dialogue_lines = [
         [("You pick up your fork and try the bacon.", WHITE)],
         [("You feel your stomach churn...", WHITE)],
-        [("You feel stronger after eating, though, even if it's nasty.", WHITE)],
+        [("Although, you feel slightly stronger after eating, even if it's nasty.", WHITE)],
         [("It's cold and slimy, but Mila nods approvingly.", WHITE)],
-        [("You've gained her trust...", WHITE)],
+        [("[+4 TRUST]", DARK_RED)],
         [("Suddenly, you are interrupted by a scream in the hallway.", WHITE)]
     ]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
+
+    plate_sound.play()
 
     # check runtime
     while True:
@@ -228,31 +223,30 @@ def play_eat_bacon_s2(screen, clock):
 def play_refuse_food_s2(screen, clock):
     player_states.trust -= 2
     dialogue_lines = [
-        [("You push the plate away, feeling uneasy", WHITE)],
-        [("Mila shrugs and continues eating, but her eyes linger on you for too long…", WHITE)],
+        [("You push the plate away, feeling uneasy.", WHITE)],
+        [("Mila shrugs and continues eating, but her eyes linger on you for too long...", WHITE)],
         [("[-2 TRUST]", DARK_RED)],
-        [("Suddenly, the tension is broken by a scream in the hallway", WHITE)],
+        [("Suddenly, the tension is broken by a scream in the hallway.", WHITE)],
     ]
 
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
 
+    plate_sound.play()
+
     # check runtime
     while True:
         clock.tick(60)
 
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
                 return GameState.QUIT
 
             if event.type == pygame.KEYDOWN:
-
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         current_line += 1
-
                         if current_line < len(dialogue_lines):
                             dialogue_box.set_text(dialogue_lines[current_line])
                         else:
@@ -263,7 +257,6 @@ def play_refuse_food_s2(screen, clock):
             screen.blit(mila_pensive_lit, (450, 100))
 
         # visuals
-        # fix lines here
         dialogue_box.update()
         dialogue_box.draw(screen)
         pygame.display.flip()

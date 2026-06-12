@@ -9,10 +9,10 @@ def play_intro_s3(screen, clock):
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
 
     dialogue_lines = [
-        [("Curiously, you both wander the halls.", WHITE)],
-        [("Suddenly, the lights go out...", WHITE)],
-        [("You feel the ground move...", WHITE)],
-        [("The hallways twist and shift into a dark maze.", WHITE)],
+        [("Curiously, you both wander the halls...", WHITE)],
+        [("...when out of nowhere, the lights go out...", WHITE)],
+        [("..you feel the ground move...", WHITE)],
+        [("..the hallways twisting and shifting into a dark maze.", WHITE)],
         [("Mila abruptly grabs your wrist:", WHITE)],
         [("MILA: We have to go. Now.", PURPLE)],
         [("You have to make a quick decision.", WHITE)],

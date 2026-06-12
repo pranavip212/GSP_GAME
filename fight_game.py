@@ -82,6 +82,7 @@ def play_fight(screen, clock):
                     #fight
                 elif current_state == "fight":
                         bar_value += REFILL_AMOUNT
+                        hit_sound.play()
                         shake = 10
 
                         if bar_value > BAR_MAX:
@@ -105,15 +106,13 @@ def play_fight(screen, clock):
             if bar_value <= 0:
                 bar_value = 0
                 current_state = "lose"
-                zombie_sound.play()
-                zombie_sound.set_volume(0.7)
+                lose_sound.play()
                 dialogue_text = "YOU LOST...PRESS SPACE TO RETRY"
 
             if timer <= 0:
                 timer = 0
                 current_state = "win"
                 win_sound.play()
-                win_sound.set_volume(1)
                 dialogue_text = "YOU SURVIVED! PRESS SPACE TO CONTINUE"
 
         # SHAKE AFFECT

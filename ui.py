@@ -12,9 +12,7 @@ def speaker(name, color, dialogue):
 # typewriter effect on screen
 class DialogueBox:
     def __init__(self, rect, font_size=28):
-
         self.rect = pygame.Rect(rect)
-
         self.font = pygame.freetype.SysFont(
             "consolas",
             font_size,

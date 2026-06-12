@@ -11,25 +11,16 @@ def play_intro_s1(screen, clock):
     fade_alpha = 255
 
     dialogue_lines = [
-
         [("Press space to begin/continue.", WHITE)],
-
         [("You were having the best nap of your life...", WHITE)],
-
         [("Something feels cold on your face.", WHITE)],
-
         [("...wait.", RED)],
-
         [("This isn't YOUR drool.", RED)],
-
         [("A zombie is hovering inches above you.", WHITE)],
-
         [("Before you can react...", RED)]
-
     ]
 
     current_line = 0
-
 
     # create dialogue box
     dialogue_box = DialogueBox((40, 450, 720, 120))
@@ -41,7 +32,6 @@ def play_intro_s1(screen, clock):
     while running:
 
         # limiting fps
-
         clock.tick(60)
 
         for event in pygame.event.get():
@@ -55,7 +45,6 @@ def play_intro_s1(screen, clock):
 
                 # SPACE advances dialogue
                 if event.key == pygame.K_SPACE:
-
                     current_line += 1
 
                     # automatically advance to next line
@@ -78,14 +67,11 @@ def play_intro_s1(screen, clock):
 
         # dark red horror overlay
         overlay = pygame.Surface((WIDTH, HEIGHT))
-
         overlay.fill((20, 0, 0))
-
         overlay.set_alpha(40)
-
         screen.blit(overlay, (0, 0))
-        # used chat for help with fade
-        # fade from black at beginning
+
+        # used chat for help with fade; fade from black at beginning
         if fade_alpha > 0:
             fade_surface = pygame.Surface((WIDTH, HEIGHT))
 
