@@ -108,7 +108,6 @@ def main():
 # intro screen
 def title_screen(screen, clock):
     title_page_music.play(-1, fade_ms=4000)
-    title_page_music.set_volume(0.5)
 
     start_btn = UIElement(
         center_position=(WIDTH // 2, 380),

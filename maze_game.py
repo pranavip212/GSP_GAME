@@ -1,6 +1,7 @@
 import math
 from ui import DialogueBox
 from images import *
+from media import *
 from scene_4 import play_intro_s4
 
 def play_maze_game(mode):
@@ -54,6 +55,10 @@ def play_maze_game(mode):
         {"rect": pygame.Rect(300, 100, 40, 40), "dir": 1},
         {"rect": pygame.Rect(700, 400, 40, 40), "dir": -1}]
 
+    def play_sound():
+        caught_sound.play()
+        caught_sound.set_volume(0.5)
+
     def move_towards(rect, target_pos, speed):
         dx = target_pos[0] - rect.centerx
         dy = target_pos[1] - rect.centery
@@ -93,6 +98,7 @@ def play_maze_game(mode):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e and lose_count >= 3:
                     screen = pygame.display.set_mode((WIDTH, HEIGHT))
+                    main_music.fadeout(1500)
                     play_intro_s4(screen, clock)
 
         # --- GUI --- #
@@ -124,6 +130,7 @@ def play_maze_game(mode):
             # Lose Conditions
             for wall in walls:
                 if player.colliderect(wall):
+                    play_sound()
                     game_over_state = True
 
             for zombie_enemy in zombies:
@@ -135,6 +142,7 @@ def play_maze_game(mode):
                     zombie_enemy["dir"] = -1
 
                 if player.colliderect(zombie_enemy["rect"]):
+                    play_sound()
                     game_over_state = True
 
             # Follow Mode
@@ -149,14 +157,15 @@ def play_maze_game(mode):
                 elapsed_ms = pygame.time.get_ticks() - start_ticks
 
                 if elapsed_ms > 2000 and player.colliderect(mila):
+                    play_sound()
                     game_over_state = True
 
             # Win Condition
             if player.colliderect(target):
                 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+                main_music.fadeout(1500)
                 play_intro_s4(screen, clock)
 
-        if not game_over_state:
             dialogue_box.update()
             dialogue_box.draw(maze_screen)
 

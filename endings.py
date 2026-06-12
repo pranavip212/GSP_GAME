@@ -11,7 +11,7 @@ def play_ending(screen, clock, choice, outcome):
     quit_button = pygame.Rect((344, 354, 90, 50))
 
     if outcome == "good":
-        good_ending_music.play(-1, fade_ms=4000)
+        good_ending_music.play(-1, fade_ms=3000)
         good_ending_music.set_volume(0.7)
     elif outcome == "bad":
         bad_ending_music.play(-1, fade_ms=4000)

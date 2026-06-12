@@ -1,5 +1,6 @@
 import pygame.freetype
 from images import *
+from media import *
 from fight_game import play_fight
 from ui import DialogueBox
 
@@ -33,9 +34,10 @@ def play_intro_s1(screen, clock):
     # create dialogue box
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
+
+    main_music.play(-1)
+
     running = True
-
-
     while running:
 
         # limiting fps

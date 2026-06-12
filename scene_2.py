@@ -3,6 +3,7 @@ import pygame.freetype
 from game_states import GameState
 from scene_3 import play_intro_s3
 from images import *
+from media import *
 from ui import DialogueBox
 pygame.init()
 pygame.mixer.init()
@@ -13,41 +14,23 @@ def play_intro_s2(screen, clock):
     fade_alpha = 255
 
     dialogue_lines = [
-
         [("Running into the corridor, the school is crawling with the undead in uniforms.", WHITE)],
-
         [("Distracted, you run into a tall figure...", WHITE)],
-
         [("Expecting the worst, you are shocked when you meet Mila's dark, tired eyes.", WHITE)],
-
         [("MILA: O.M.G! What are you doing here?", PURPLE)],
-
         [("YOU: RUNNING? HELLO? ZOMBIES???", WHITE)],
-
         [("MILA: OH RIGHT!!", PURPLE)],
-
         [("Mila's cold hand grabs yours and pulls you into the kitchen, locking the door.", WHITE)],
-
         [("After catching your breath, Mila insists on making you breakfast.", WHITE)],
-
         [("You and Mila survived history class together and have been trauma-bonded ever since.", WHITE)],
-
         [("Naturally, she is your first and only friend at this new school...", WHITE)],
-
         [("...even if she seems a little strange...", WHITE)],
-
         [("Mila interrupts your thoughts and slides a plate in front of you.", WHITE)],
-
         [("The scrambled eggs look fine, but the bacon... it's practically raw.", WHITE)],
-
         [('MILA: You like it crispy, right?', RED)],
-
         [("She asks, already biting into a bloody strip.", WHITE)],
-
         [("You hesitate. Mila always seemed a little weird, but this?", WHITE)],
-
         [("What will you do?", DARK_RED)]
-
     ]
 
     current_line = 0
@@ -64,6 +47,9 @@ def play_intro_s2(screen, clock):
     refuse_button = pygame.Rect((40, 310, 250, 60))
     knife_button = pygame.Rect((40, 380, 250, 60))
     font = pygame.freetype.SysFont("consolas", 28, bold=True)
+
+    running_sound.play()
+    running_sound.set_volume(0.5)
 
     #choice loop
     while True:
@@ -196,8 +182,6 @@ def play_intro_s2(screen, clock):
         pygame.display.flip()
 
 
-
-
 def play_eat_bacon_s2(screen, clock):
     player_states.trust += 4
 
@@ -213,10 +197,6 @@ def play_eat_bacon_s2(screen, clock):
     current_line = 0
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
-
-
-
-
 
     # check runtime
     while True:
@@ -258,7 +238,6 @@ def play_refuse_food_s2(screen, clock):
     dialogue_box = DialogueBox((40, 450, 720, 120))
     dialogue_box.set_text(dialogue_lines[current_line])
 
-
     # check runtime
     while True:
         clock.tick(60)
@@ -293,32 +272,18 @@ def play_grab_knife_s2(screen, clock):
     player_states.trust -= 5
     player_states.knife = True
 
-
-
     dialogue_lines = [
-
     [("You look around the kitchen, an idea forming...", WHITE)],
-
     [("YOU: Mila, could you please grab me some pepper from the pantry?", RED)],
-
     [("MILA: Sure, no problem.", PURPLE)],
-
     [("When she is out of sight, you jump up and grab the sharpest knife you see...", WHITE)],
-
     [("You wrap it in a paper towel and hide it in your sock.", WHITE)],
-
     [("With a racing heart, you sit back down.", WHITE)],
-
     [("However, Mila notices the missing knife...", WHITE)],
-
     [("MILA: Uh hey... what are you doing there?", PURPLE)],
-
     [("YOU: Uh... um...", RED)],
-
     [("[-5 TRUST]", DARK_RED)],
-
     [("Suddenly, the tension is broken by a scream in the hallway.", WHITE)]
-
     ]
 
     current_line = 0

@@ -58,6 +58,7 @@ def play_intro_s4(screen, clock):
                     if current_line < len(dialogue_lines):
                         dialogue_box.set_text(dialogue_lines[current_line])
                     else:
+                        heartbeat_sound.play(-1)
                         show_choice = True
 
         # --- GUI --- #
@@ -195,9 +196,10 @@ def play_talk_s4(screen, clock):
                             transition_bad_ending(screen, clock, "talk")
 
         # --- GUI --- #
+        heartbeat_sound.fadeout(1500)
+        scene_4_music.fadeout(1500)
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
         screen.blit(pygame.transform.scale(pygame.transform.flip(mila_normal_dark, True, False), (195, 520)), (400, 120))
-        scene_4_music.fadeout(1500)
 
         if player_states.trust >= 1:
             if current_line >= 1:
@@ -269,6 +271,7 @@ def play_fight_s4(screen, clock):
                             transition_bad_ending(screen, clock, "fight")
 
         # --- GUI --- #
+        heartbeat_sound.fadeout(1500)
         scene_4_music.fadeout(1500)
         screen.blit(pygame.transform.flip(maze, True, False), (0, 0))
         screen.blit(pygame.transform.scale(pygame.transform.flip(mila_silhouette, True, False), (195, 520)), (400, 120))

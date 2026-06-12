@@ -1,5 +1,6 @@
 import random
 from images import *
+from media import *
 from scene_2 import play_intro_s2
 from game_states import GameState
 
@@ -104,11 +105,15 @@ def play_fight(screen, clock):
             if bar_value <= 0:
                 bar_value = 0
                 current_state = "lose"
+                zombie_sound.play()
+                zombie_sound.set_volume(0.7)
                 dialogue_text = "YOU LOST...PRESS SPACE TO RETRY"
 
             if timer <= 0:
                 timer = 0
                 current_state = "win"
+                win_sound.play()
+                win_sound.set_volume(1)
                 dialogue_text = "YOU SURVIVED! PRESS SPACE TO CONTINUE"
 
         # SHAKE AFFECT
