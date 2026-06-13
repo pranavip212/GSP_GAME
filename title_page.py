@@ -8,15 +8,14 @@ pygame.init()
 pygame.mixer.init()
 
 
-
-# ---------------- TEXT FUNCTION ----------------
+# --- Text Function -- #
 def create_surface_with_text(text, font_size, text_rgb):
     font = pygame.freetype.SysFont("consolas", font_size, bold=True)
     surface, _ = font.render(text=text, fgcolor=text_rgb)
     return surface.convert_alpha()
 
 
-# ---------------- BUTTON CLASS ----------------
+# --- Button Class --- #
 class UIElement(Sprite):
     def __init__(
         self,
@@ -105,7 +104,6 @@ def main():
             return
 
 
-# intro screen
 def title_screen(screen, clock):
     title_page_music.play(-1, fade_ms=4000)
 
@@ -127,17 +125,15 @@ def title_screen(screen, clock):
 
     buttons = [start_btn, quit_btn]
 
-    # title text
+    # --- GUI --- #
     title_font = pygame.freetype.SysFont("consolas", 72, bold=True)
 
     subtitle_font = pygame.freetype.SysFont("consolas", 24)
 
     while True:
-
         mouse_up = False
 
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
                 return GameState.QUIT
 
@@ -145,21 +141,12 @@ def title_screen(screen, clock):
                 if event.button == 1:
                     mouse_up = True
 
-        # background
         screen.fill(BLACK)
-
-        # red fog effect
         pygame.draw.circle(screen, DARK_RED, (400, 200), 250)
-
-        # title
         title_font.render_to(screen, (190, 120),"LAST BELL", RED)
-
-        # subtitle
         subtitle_font.render_to(screen, (240, 210), "A Zombie Visual Horror Game", WHITE)
 
-        # buttons
         for button in buttons:
-
             ui_action = button.update(pygame.mouse.get_pos(),mouse_up)
 
             if ui_action is not None:
@@ -171,7 +158,7 @@ def title_screen(screen, clock):
         clock.tick(60)
 
 
-# ---------------- GAME SCREEN ----------------
+# --- Base Game Screen --- #
 def play_level(screen, clock):
 
     return_btn = UIElement(
@@ -212,6 +199,6 @@ def play_level(screen, clock):
         clock.tick(60)
 
 
-# ---------------- RUN GAME ----------------
+# --- Run Game --- #
 if __name__ == "__main__":
     main()

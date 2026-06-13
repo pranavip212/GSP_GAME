@@ -24,13 +24,10 @@ def play_maze_game(mode):
         [("Press E to skip.", RED)]]
     dialogue_box = DialogueBox((10, 600, 720, 120))
 
-
-
     if mode == "follow_mode":
         dialogue_box.set_text(instruction[0])
     elif mode == "run_mode":
         dialogue_box.set_text(instruction[1])
-
 
     game_over_box = DialogueBox((205, 300, 610, 60))
     game_over_box.set_text([["You got caught! Press SPACE to retry!", RED]])

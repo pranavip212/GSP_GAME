@@ -4,21 +4,13 @@ from media import *
 from scene_2 import play_intro_s2
 from game_states import GameState
 
-# =====================================
-# FONTS
-# =====================================
 pygame.font.init()
 
-# =====================================
-# SETTINGS
-# =====================================
-
+# --- Constants -- #
 BAR_MAX = 100
 START_BAR = 50
-
 DRAIN_SPEED = 20
 REFILL_AMOUNT = 5
-
 FIGHT_DURATION = 10
 
 
@@ -36,50 +28,30 @@ def play_fight(screen, clock):
 
     dialogue_text = "A zombie attacks you! PRESS SPACE!"
 
-    # =====================================
-    # BLOOD
-    # =====================================
-
+    # Screen Effects
     def draw_blood():
-
         for _ in range(10):
-
             x = random.randint(0, WIDTH)
             y = random.randint(0, HEIGHT)
 
             size = random.randint(2, 7)
+            pygame.draw.circle(screen, (180, 0, 0), (x, y), size)
 
-            pygame.draw.circle(
-                screen,
-                (180, 0, 0),
-                (x, y),
-                size
-            )
-
-    # =====================================
-    # MAIN LOOP
-    # =====================================
-
+    # --- Main Game Loop -- #
     running = True
-
     while running:
-
         dt = clock.tick(60) / 1000
 
-        # EVENTS
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
                 return GameState.QUIT
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-
-                #intor start
                 if current_state == "intro":
                         current_state = "fight"
                         dialogue_text = "SPAM SPACE TO SURVIVE!"
 
-                    #fight
                 elif current_state == "fight":
                         bar_value += REFILL_AMOUNT
                         hit_sound.play()
@@ -95,8 +67,7 @@ def play_fight(screen, clock):
                         return GameState.INTRO
 
 
-        # UPDATE
-
+        # Update Events
         if current_state == "fight":
 
             bar_value -= DRAIN_SPEED * dt
@@ -115,42 +86,31 @@ def play_fight(screen, clock):
                 win_sound.play()
                 dialogue_text = "YOU SURVIVED! PRESS SPACE TO CONTINUE"
 
-        # SHAKE AFFECT
-
+        # Shake Effects
         offset_x = 0
         offset_y = 0
 
+        # Other GUI
         if shake > 0:
             offset_x = random.randint(-shake, shake)
             offset_y = random.randint(-shake, shake)
-
             shake -= 1
 
-        #DRAW
         screen.blit(bedroom, (offset_x, offset_y))
         screen.blit(zombie, (525 + offset_x, 75 + offset_y))
-
 
         if current_state == "fight":
             draw_blood()
 
-        # TITLE
-        title = title_font.render(
-            "ZOMBIE FIGHT",
-            True,
-            WHITE
-        )
-
+        title = title_font.render("ZOMBIE FIGHT", True, WHITE)
         screen.blit(title, (260, 40))
 
-        # TIMER
         timer_text = main_font.render(f"TIME: {timer:.1f}", True, WHITE)
         screen.blit(timer_text, (360, 120))
 
-        # BAR BG
+        # Progress Bar
         pygame.draw.rect(screen, DARK_GRAY, (150, 250, 500, 50))
 
-        # BAR COLOR
         if bar_value > 60:
             color = GREEN
         elif bar_value > 30:
@@ -158,16 +118,9 @@ def play_fight(screen, clock):
         else:
             color = RED
 
-        # BAR
-        pygame.draw.rect(
-            screen,
-            color,
-            (150, 250, int((bar_value / BAR_MAX) * 500), 50)
-        )
-
+        pygame.draw.rect(screen, color, (150, 250, int((bar_value / BAR_MAX) * 500), 50))
         pygame.draw.rect(screen, WHITE, (150, 250, 500, 50), 3)
 
-        # WIN/LOSE TEXT
         if current_state == "win":
             text = big_font.render("YOU SURVIVED!", True, GREEN)
             screen.blit(text, (210, 330))
@@ -177,8 +130,7 @@ def play_fight(screen, clock):
             screen.blit(text, (50, 330))
 
 
-        # DIALOGUE
-
+        # Dialogue
         pygame.draw.rect(screen, BLACK, (50, 390, 700, 80))
         pygame.draw.rect(screen, WHITE, (50, 390, 700, 80), 3)
 
